@@ -5,6 +5,7 @@ import de.hfu.mos.R;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -31,7 +33,10 @@ public class MainActivity extends Activity {
  
     // used to store app title
     private CharSequence mTitle;
-    
+
+    // Button Kacheln
+    private Button rssreader;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -115,7 +120,29 @@ public class MainActivity extends Activity {
             // on first time display view for first nav item
         	selectItem(0);
         }
+
+
+        //RSSREADER
+        rssreader = (Button) findViewById(R.id.rssreader);
+        /*rssreader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
+                startActivity(intent);
+            }
+        });*/
+
+
+
+
+
 	}
+
+
+    public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
+        startActivity(intent);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
