@@ -36,6 +36,17 @@ public class WebsiteFragment extends Fragment {
 		return rootView;
 	}
 	
+	//Enables WebView to go page back via device back button
+	//also look at MainActivity onBackPressed() method that uses this method
+	public boolean webGoBack() {
+	    if (_WebView.canGoBack()) {
+	        _WebView.goBack();
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+	
     @Override
     public void onSaveInstanceState(Bundle outState )
     {

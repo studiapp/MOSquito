@@ -36,6 +36,9 @@ public class MainActivity extends Activity {
 
     // Button Kacheln
     private Button rssreader;
+    
+    //global Fragment for other methods, e.g. onBackPressed()
+    private Fragment fragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,7 +190,7 @@ public class MainActivity extends Activity {
     	
         // update the main content by replacing fragments
     	
-        Fragment fragment = null;
+        fragment = null;
         
         switch (position) {
         case 0:
@@ -231,6 +234,14 @@ public class MainActivity extends Activity {
             Log.e("MainActivity", "Error in creating fragment");
         }
     } 
+    
+    @Override
+    public void onBackPressed() {
+        //enables WebView to go page back in website
+    	if(fragment instanceof WebsiteFragment)
+    		if( !((WebsiteFragment)fragment).webGoBack() )
+    			super.onBackPressed();
+    }
     
     @Override
     public void setTitle(CharSequence title) {
