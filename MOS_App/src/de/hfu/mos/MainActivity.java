@@ -238,9 +238,12 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         //enables WebView to go page back in website
-    	if(fragment instanceof WebsiteFragment)
-    		if( !((WebsiteFragment)fragment).webGoBack() )
+    	if(fragment instanceof WebsiteFragment){
+    		if( !((WebsiteFragment)fragment).webGoBack() ){
     			super.onBackPressed();
+    			}
+    	}
+    	else super.onBackPressed();
     }
     
     @Override
