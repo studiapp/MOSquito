@@ -29,4 +29,14 @@
         android:layout_above="@+id/txtLabel"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:id="@+id/buttonFelix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rssreader"
+        android:layout_alignLeft="@+id/rssreader"
+        android:layout_alignRight="@+id/rssreader"
+        android:text="Felix"
+        android:onClick="onClick" />
+
 </RelativeLayout>

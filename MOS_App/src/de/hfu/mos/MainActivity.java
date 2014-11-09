@@ -1,7 +1,5 @@
 package de.hfu.mos;
 
-import de.hfu.mos.R;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -16,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -33,10 +30,7 @@ public class MainActivity extends Activity {
  
     // used to store app title
     private CharSequence mTitle;
-
-    // Button Kacheln
-    private Button rssreader;
-    
+   
     //global Fragment for other methods, e.g. onBackPressed()
     private Fragment fragment;
 
@@ -84,9 +78,6 @@ public class MainActivity extends Activity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         
         
-        
-
-        
         // for app icon control for nav drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -116,35 +107,31 @@ public class MainActivity extends Activity {
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-        
-        
-        
+              
         if (savedInstanceState == null) {
             // on first time display view for first nav item
         	selectItem(0);
         }
 
-
-        //RSSREADER
-        rssreader = (Button) findViewById(R.id.rssreader);
-        /*rssreader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
-                startActivity(intent);
-            }
-        });*/
-
-
-
-
-
 	}
 
 
     public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
-        startActivity(intent);
+
+    	fragment = null;
+    	
+        switch(v.getId()){
+        
+        case R.id.rssreader:
+            Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
+            startActivity(intent);
+        	break;
+        case R.id.buttonFelix:
+        	fragment = new FelixFragment();
+        	openFragment(fragment, -1);
+        	break;
+        	
+        }
     }
 
 	@Override
@@ -218,28 +205,51 @@ public class MainActivity extends Activity {
         default:
             break;
         }
-         
+        openFragment(fragment, position);
+    } 
+    
+    //renders the fragment in activity_main
+    protected void openFragment(Fragment fragment, int position){
+    	
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
  
-            // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(mNavigationDrawerItemTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-            
+            //change the title to actuall fragment depended on position
+            //position is handled normaly by navigation drawer, but manually if button click
+			switch (position) {
+			
+			//position of RSS:
+			case -2:
+				break;
+			//position of Felix:
+			case -1:
+				setTitle("Felix");
+				break;
+			//if position is declared by navigation drawer::
+			default: 
+				// update selected item and title, then close the drawer
+				mDrawerList.setItemChecked(position, true);
+				mDrawerList.setSelection(position);
+				setTitle(mNavigationDrawerItemTitles[position]);
+				mDrawerLayout.closeDrawer(mDrawerList);
+			}
         } else {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
-    } 
+    }
     
     @Override
     public void onBackPressed() {
-        //enables WebView to go page back in website
-    	if(fragment instanceof WebsiteFragment){
+    	
+        //enables WebView to go page back in website and felix
+    	if(fragment instanceof WebsiteFragment ){
     		if( !((WebsiteFragment)fragment).webGoBack() ){
+    			super.onBackPressed();
+    			}
+    	}else if(fragment instanceof FelixFragment){
+    		if( !((FelixFragment)fragment).webGoBack() ){
     			super.onBackPressed();
     			}
     	}
