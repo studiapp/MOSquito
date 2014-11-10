@@ -1,6 +1,7 @@
 package de.hfu.mos;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -33,12 +34,18 @@ public class MainActivity extends Activity {
    
     //global Fragment for other methods, e.g. onBackPressed()
     private Fragment fragment;
+    
+    //Downloadmanager to download file in WebView
+    DownloadManager _DownloadManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//init Downloadmanager
+		 _DownloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+		 
 		// for proper titles
 		mTitle = mDrawerTitle = getTitle();
 		
@@ -127,7 +134,7 @@ public class MainActivity extends Activity {
             startActivity(intent);
         	break;
         case R.id.buttonFelix:
-        	fragment = new FelixFragment();
+        	fragment = new FelixFragment(_DownloadManager);
         	openFragment(fragment, -1);
         	break;
         	
