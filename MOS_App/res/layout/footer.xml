@@ -13,7 +13,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
-        android:background="@android:color/transparent" />
+        android:onClick="onClick"
+        android:background="@android:color/transparent"
+        android:id="@+id/fb_button" />
     
     <ImageButton 
         android:layout_width="wrap_content"
@@ -23,7 +25,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
-        android:background="@android:color/transparent" />
+        android:onClick="onClick"
+        android:background="@android:color/transparent"
+        android:id="@+id/studi_button" />
     
     <ImageButton 
         android:layout_width="wrap_content"
@@ -33,7 +37,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
-        android:background="@android:color/transparent" />
+        android:onClick="onClick"
+        android:background="@android:color/transparent"
+        android:id="@+id/mensa_button" />
     
     <ImageButton
         android:layout_width="wrap_content"
@@ -42,7 +48,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
+        android:onClick="onClick"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_bib" />
+        android:src="@drawable/ic_bib"
+        android:id="@+id/bib_button" />
 
 </LinearLayout>
