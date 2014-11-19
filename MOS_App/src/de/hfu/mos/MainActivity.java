@@ -35,10 +35,10 @@ public class MainActivity extends Activity {
     // used to store app title
     private CharSequence mTitle;
 
-    //global Fragment for other methods, e.g. onBackPressed()
+    // global Fragment for other methods, e.g. onBackPressed()
     private Fragment fragment;
 
-    //Downloadmanager to download file in WebView
+    // Downloadmanager to download file in WebView
     DownloadManager _DownloadManager;
 
     @Override
