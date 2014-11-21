@@ -144,6 +144,10 @@ public class MainActivity extends Activity {
                 //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             	openFragment(fragment, -2);
                 break;
+            case R.id.buttonBudget:
+                fragment = new BudgetRechner();
+                openFragment(fragment, 0);
+                break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
                 openFragment(fragment, -1);
@@ -278,7 +282,10 @@ public class MainActivity extends Activity {
             //change the title to actuall fragment depended on position
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
-
+            //position of RSS:
+	            case 0:
+	            	setTitle("BudgetRechner");
+	                break;
                 //position of RSS:
                 case -2:
                 	setTitle("HFUReader");
