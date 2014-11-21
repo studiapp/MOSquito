@@ -27,8 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name="de.hfu.mos.RSSReaderFragment">
-
         </activity>
+         <service android:name=".RssService" />
     </application>
 
 </manifest>

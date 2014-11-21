@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -130,12 +131,18 @@ public class MainActivity extends Activity {
     public void onClick(View v) {
 
         fragment = null;
-
+        ListFragment listfragment;
+        listfragment = null;
+        
         switch (v.getId()) {
 
             case R.id.rssreader:
-                Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
+                //startActivity(intent);
+            	fragment = new RSSFragment();
+                //FragmentManager fragmentManager = getFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            	openFragment(fragment, -2);
                 break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
@@ -274,6 +281,7 @@ public class MainActivity extends Activity {
 
                 //position of RSS:
                 case -2:
+                	setTitle("HFUReader");
                     break;
                 //position of Felix:
                 case -1:

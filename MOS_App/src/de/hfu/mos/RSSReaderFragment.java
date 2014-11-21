@@ -39,7 +39,7 @@ public class RSSReaderFragment extends Activity{// A reference to the local obje
         Log.d("hfureader", Thread.currentThread().getName());
     }
 
-    private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem> > {
+    public class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem> > {
         @Override
         protected List<RssItem> doInBackground(String... urls) {
 
@@ -64,7 +64,7 @@ public class RSSReaderFragment extends Activity{// A reference to the local obje
         protected void onPostExecute(List<RssItem> result) {
 
             // Get a ListView from main view
-            ListView itcItems = (ListView) findViewById(R.id.listMainView);
+            ListView itcItems = (ListView) findViewById(R.id.listRSS);
 
             // Create a list adapter
             ArrayAdapter<RssItem> adapter = new ArrayAdapter<RssItem>(local,android.R.layout.simple_list_item_1, result);
