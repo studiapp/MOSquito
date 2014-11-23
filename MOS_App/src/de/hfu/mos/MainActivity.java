@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,10 +35,10 @@ public class MainActivity extends Activity {
     // used to store app title
     private CharSequence mTitle;
 
-    //global Fragment for other methods, e.g. onBackPressed()
+    // global Fragment for other methods, e.g. onBackPressed()
     private Fragment fragment;
 
-    //Downloadmanager to download file in WebView
+    // Downloadmanager to download file in WebView
     DownloadManager _DownloadManager;
 
     @Override
@@ -129,12 +130,22 @@ public class MainActivity extends Activity {
     public void onClick(View v) {
 
         fragment = null;
-
+        ListFragment listfragment;
+        listfragment = null;
+        
         switch (v.getId()) {
 
             case R.id.rssreader:
-                Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
+                //startActivity(intent);
+            	fragment = new ReadFragment();
+                //FragmentManager fragmentManager = getFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            	openFragment(fragment, -2);
+                break;
+            case R.id.buttonBudget:
+//                fragment = new BudgetRechner();
+//                openFragment(fragment, 0);
                 break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
@@ -270,9 +281,13 @@ public class MainActivity extends Activity {
             //change the title to actuall fragment depended on position
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
-
+            //position of RSS:
+	            case 0:
+	            	setTitle("BudgetRechner");
+	                break;
                 //position of RSS:
                 case -2:
+                	setTitle("HFUReader");
                     break;
                 //position of Felix:
                 case -1:

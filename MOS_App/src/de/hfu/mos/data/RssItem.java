@@ -4,16 +4,21 @@ package de.hfu.mos.data;
 public class RssItem {
 	
 	// item title
-	private String title;
+	private final String title;
 	// item link
-	private String link;
+	private final String link;
 
+    public RssItem(String title, String link) {
+        this.title = title;
+        this.link = link;
+    }
+    
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		title = title;
 	}
 
 	public String getLink() {
@@ -21,7 +26,7 @@ public class RssItem {
 	}
 
 	public void setLink(String link) {
-		this.link = link;
+		link = link;
 	}
 	
 	@Override

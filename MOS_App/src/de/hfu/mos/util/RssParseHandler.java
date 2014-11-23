@@ -32,7 +32,7 @@ public class RssParseHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		if ("item".equals(qName)) {
-			currentItem = new RssItem();
+			//currentItem = new RssItem();
 		} else if ("title".equals(qName)) {
 			parsingTitle = true;
 		} else if ("link".equals(qName)) {
