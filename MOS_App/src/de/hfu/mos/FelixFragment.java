@@ -16,7 +16,6 @@ import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 public class FelixFragment extends Fragment {
 	
@@ -79,9 +78,7 @@ public class FelixFragment extends Fragment {
 			// forces page to open in webView instead of Browser
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				
-				Toast.makeText(getActivity(), url, Toast.LENGTH_SHORT).show();
-				
+								
 				if (url.contains(".pdf") ||
 						url.contains(".doc") ||
 						url.contains(".txt") ||
