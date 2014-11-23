@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#339900"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.graphs.MainActivity" >
+
+    <Button
+        android:id="@+id/cn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:onClick="onClick"
+        android:text="Computer Netze" />
+
+    <Button
+        android:id="@+id/ai"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cn"
+        android:layout_below="@+id/cn"
+        android:onClick="onClick"
+        android:text="Angewandte Informatik" />
+
+    <Button
+        android:id="@+id/spb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ai"
+        android:layout_alignRight="@+id/ai"
+        android:layout_below="@+id/ai"
+        android:text="SW Produkt Management" />
+
+    <Button
+        android:id="@+id/verglbachelor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spb"
+        android:layout_alignRight="@+id/spb"
+        android:layout_below="@+id/spb"
+        android:text="Alle Bachelorstudiengänge" />
+
+    <TextView
+        android:id="@+id/tvbachelor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cn"
+        android:layout_alignParentTop="true"
+        android:text="Bachelorstudiengänge"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/mos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/verglbachelor"
+        android:layout_below="@+id/verglbachelor"
+        android:layout_marginTop="47dp"
+        android:onClick="onClick"
+        android:text="Mobile Systeme" />
+
+    <Button
+        android:id="@+id/in"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/verglbachelor"
+        android:layout_below="@+id/mos"
+        android:text="Informatik" />
+
+    <Button
+        android:id="@+id/verglmaster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/verglbachelor"
+        android:layout_alignRight="@+id/in"
+        android:layout_below="@+id/in"
+        android:text="Alle Masterstudiengänge" />
+
+    <TextView
+        android:id="@+id/tvmaster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mos"
+        android:layout_below="@+id/verglbachelor"
+        android:layout_marginTop="24dp"
+        android:text="Masterstudiengänge"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
