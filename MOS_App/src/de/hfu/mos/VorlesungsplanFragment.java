@@ -15,7 +15,10 @@ import net.fortuna.ical4j.model.Property;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,21 +28,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.hfu.mos.util.QuickSortCalendar;
 
-public class VorlesungsplanFragment extends Fragment {
+public class VorlesungsplanFragment extends Fragment implements OnItemSelectedListener {
 	
 	private CalendarBuilder _CalendarBuilder;
 	private DownloadManager _DownloadManager;
-	private Button _buttonUpdate;
+	private Button _buttonUpdate, _buttonShow;
 	private LinearLayout _Layout, emptyLayout;
+	private Spinner _SpinnerStudiengang, _SpinnerSemester;
+	private TextView _AngezeigterPlan;
+	
+	private Vorlesung asynkTask;
+	
+	private ArrayAdapter<CharSequence> adapterStudiengang, adapterSemster;
+	
+	private String url, fileName;
+	private File file; 
 	
 	private java.util.Calendar today;
-	
+		
 	private final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd'T'hhmmss", Locale.GERMANY);
 		
 	//we need the Downloadmanager to download ics File from the HFU website.
@@ -59,34 +75,89 @@ public class VorlesungsplanFragment extends Fragment {
 		today = java.util.Calendar.getInstance();
 		
 		_CalendarBuilder = new CalendarBuilder();
+	
+		_AngezeigterPlan = (TextView) rootView.findViewById(R.id.textView_angezeigterPlan);
 		
 		_Layout = (LinearLayout) rootView.findViewById(R.id.linearLayout_Vorlesung);
 				
-		_buttonUpdate = (Button) rootView.findViewById(R.id.button_Vorlesungsplan);
+		_buttonUpdate = (Button) rootView.findViewById(R.id.button_updateVorlesungsplan);
 		
+		_buttonShow = (Button) rootView.findViewById(R.id.button_showVorlesungsplan);
+		
+		_SpinnerStudiengang = (Spinner) rootView.findViewById(R.id.spinnerStudiengang_Vorlesung);
+		
+		_SpinnerSemester = (Spinner) rootView.findViewById(R.id.spinnerSemester_Vorlesung);
+		
+		adapterStudiengang = ArrayAdapter.createFromResource(getActivity(),
+		        R.array.studiengang, android.R.layout.simple_spinner_dropdown_item);
+		
+		adapterSemster = ArrayAdapter.createFromResource(getActivity(),
+		        R.array.Semester_AIB, android.R.layout.simple_spinner_dropdown_item);
+		
+		_SpinnerStudiengang.setAdapter(adapterStudiengang);
+		_SpinnerSemester.setAdapter(adapterSemster);
+		
+		_SpinnerStudiengang.setOnItemSelectedListener(this);
+
 		OnClickListener clickListener = new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				
+				switch(v.getId()){
 				
-				updatePlan(v);
+				case R.id.button_updateVorlesungsplan:
+				
+					setFile();
+					
+					if(file != null)
+						file.delete();
+					if(isOnline()){
+						downloadVorlesungsplan();
+						loadPlan(v);
+					}
+					else 
+						Toast.makeText(getActivity(), "Sorry, no Internet available", Toast.LENGTH_LONG).show();
+					
+					break;
+					
+				case R.id.button_showVorlesungsplan:
+					
+					setFile();
+					loadPlan(v);
+					break;
+				}
 			}
 		};
 		_buttonUpdate.setOnClickListener(clickListener);
-			
-		updatePlan(null);
+		_buttonShow.setOnClickListener(clickListener);
+		
+		if( new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").listFiles().length > 0){
+			file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").listFiles()[0];
+			fileName = file.getName();
+		}
+		loadPlan(null);
 		
 		return rootView;
 	}
 	
-	public void updatePlan(View v){
+	private void loadPlan(View v){
 		
-		new Vorlesung().execute(v);
-
+		if(file != null && file.exists() ){
+			asynkTask = new Vorlesung();
+			asynkTask.execute();
+		}
+		else
+			Toast.makeText(getActivity(), "Nothing to display. Please update.", Toast.LENGTH_SHORT).show();
+		
 	}
     
-	
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		asynkTask.cancel(true);
+	}
 	//The entries in the ics file are sorted by the Event and not by date
 	//here we sort the content by date
 	private Vector<Component> sortData(Calendar cal) throws ParseException{
@@ -100,6 +171,43 @@ public class VorlesungsplanFragment extends Fragment {
 		return testList;
 		
 	}
+	
+	
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		
+		if(pos == adapterStudiengang.getPosition("AIB")){
+			adapterSemster = ArrayAdapter.createFromResource(getActivity(),
+			        R.array.Semester_AIB, android.R.layout.simple_spinner_dropdown_item);
+			_SpinnerSemester.setAdapter(adapterSemster);
+			return;
+		}
+		
+		if(pos == adapterStudiengang.getPosition("CNB")){
+			adapterSemster = ArrayAdapter.createFromResource(getActivity(),
+			        R.array.Semester_CNB, android.R.layout.simple_spinner_dropdown_item);
+			_SpinnerSemester.setAdapter(adapterSemster);
+			return;
+		}
+		
+		if(pos == adapterStudiengang.getPosition("SPB")){
+			adapterSemster = ArrayAdapter.createFromResource(getActivity(),
+			        R.array.Semester_SPB, android.R.layout.simple_spinner_dropdown_item);
+			_SpinnerSemester.setAdapter(adapterSemster);
+			return;
+		}
+		
+		if(pos == adapterStudiengang.getPosition("MOS")){
+			adapterSemster = ArrayAdapter.createFromResource(getActivity(),
+			        R.array.Semester_MOS, android.R.layout.simple_spinner_dropdown_item);
+			_SpinnerSemester.setAdapter(adapterSemster);
+			return;
+		}
+
+		
+	}
+
+	
 	
 	private String getDay(int day){
 
@@ -123,7 +231,32 @@ public class VorlesungsplanFragment extends Fragment {
 		}
 	}
 	
-	private class Vorlesung extends AsyncTask<View, Void, LinearLayout>{
+	private void downloadVorlesungsplan(){
+		
+		Uri path;
+		
+		Request request = new Request(Uri.parse(url));
+		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+		request.setDestinationInExternalPublicDir(
+				Environment.DIRECTORY_DOWNLOADS +"/MOS_vorlesungsplan" , fileName);
+		long id = _DownloadManager.enqueue(request);
+
+		while ((path = _DownloadManager.getUriForDownloadedFile(id)) == null) {
+
+		}
+		
+		file = new File(path.getPath());
+	}
+	
+	//looks for onlinestate //Redundanz WebMail <-> FelixLogin <-> Website
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+	
+	private class Vorlesung extends AsyncTask<Void, Void, LinearLayout>{
 		
 
 		@Override
@@ -132,6 +265,9 @@ public class VorlesungsplanFragment extends Fragment {
 				_Layout.removeAllViews();
 				_Layout.addView(this.get());
 				Toast.makeText(getActivity(), "fertig", Toast.LENGTH_SHORT).show();
+				file = null;
+				_AngezeigterPlan.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+				_AngezeigterPlan.setText(fileName);
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
@@ -143,23 +279,9 @@ public class VorlesungsplanFragment extends Fragment {
 			Toast.makeText(getActivity(), "loading...", Toast.LENGTH_SHORT).show();
 			
 		}
+		
 		@Override
-		protected LinearLayout doInBackground(View... params) {
-			
-			//the ics File from the HFU website
-			File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/vorlesungsplan.ics");
-			
-			//if v is null, this method was called by the onCreate method
-			//otherwise a button was clicked
-			if(params[0] != null)
-				switch(params[0].getId()){
-				
-				//if the button is pressed, we delete the file and go on with the code -> redownload file and display entries
-				case R.id.button_Vorlesungsplan:
-					if(file.exists()) 
-						file.delete();
-					break;
-				}
+		protected LinearLayout doInBackground(Void... params) {
 			
 			LayoutInflater inflater = getActivity().getLayoutInflater();
 			
@@ -185,38 +307,25 @@ public class VorlesungsplanFragment extends Fragment {
 				//needs to be set somewhere in the (far) past to make the following code work (see: switch/case 0)
 				actuallDate.setTime(SDF.parse("20000101T123456"));
 				
-				FileInputStream fin;
-				Uri path;
-				if(!file.exists()){
+				FileInputStream fin= new FileInputStream(file);
 
-					String url = "https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&puid=8&pgid=2505&lan=de";
-					Request request = new Request(Uri.parse(url));
-					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-					request.setDestinationInExternalPublicDir(
-							Environment.DIRECTORY_DOWNLOADS, "vorlesungsplan.ics");
-					long id = _DownloadManager.enqueue(request);
-
-					while ((path = _DownloadManager.getUriForDownloadedFile(id)) == null) {
-
-					}
-					fin = new FileInputStream(path.getPath());
-
-				}
-				else 
-					fin = new FileInputStream(file);
-				
 				Calendar calendar = _CalendarBuilder.build(fin);
-				
+
 				Vector<Component> daten = sortData(calendar);
 
 				for(int i = 0; i < daten.size(); i++){
 
 					//parses the entry of the time into somthing we can work with
+					//little bug here: Hour_of_day is 0 where it should be 12
 					tempDateStart.setTime(SDF.parse(daten.get(i).getProperty(Property.DTSTART).getValue()));
+					if(tempDateStart.get(java.util.Calendar.HOUR_OF_DAY) == 0)
+						tempDateStart.set(java.util.Calendar.HOUR_OF_DAY, 12);
 					tempDateEnd.setTime(SDF.parse(daten.get(i).getProperty(Property.DTEND).getValue()));
-					
-					//tests if date is already in the past. If so the entry is not used and we jump to the next entry
-					if(tempDateStart.before(today)){
+					if(tempDateEnd.get(java.util.Calendar.HOUR_OF_DAY) == 0)
+						tempDateEnd.set(java.util.Calendar.HOUR_OF_DAY, 12);
+
+					//tests if date is already in the past and not ended yet. If so the event is not used and we jump to the next entry
+					if(tempDateEnd.before(today)){
 						continue;
 					}
 					
@@ -280,7 +389,11 @@ public class VorlesungsplanFragment extends Fragment {
 								((TextView) (layoutToDisplay.getChildAt(0))).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 								//we iterate through all remaining description entries and save them in one string to be able to print it in one line
 								for(int part = 1; part < daten.get(i).getProperty(Property.DESCRIPTION).getValue().split("\n").length; part++)
-									tempString += daten.get(i).getProperty(Property.DESCRIPTION).getValue().split("\n")[part] + " ";
+									if( part < 2 || daten.get(i).getProperty(Property.DESCRIPTION).getValue().split("\n").length-1 > part)
+										tempString += daten.get(i).getProperty(Property.DESCRIPTION).getValue().split("\n")[part] + " ";
+									else
+										tempString += "\n"+daten.get(i).getProperty(Property.DESCRIPTION).getValue().split("\n")[part] + " ";
+								
 								((TextView) (layoutToDisplay.getChildAt(0))).setText(tempString);
 								((View) (layoutToDisplay.getChildAt(1))).setBackgroundResource(R.color.White);
 								break;
@@ -324,6 +437,143 @@ public class VorlesungsplanFragment extends Fragment {
 
 			return emptyLayout;
 		}
+		
+	}
+	
+private void setFile(){
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB1")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB1)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.AIB1_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB2")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB2)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.AIB2_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB3")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB3)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.AIB3_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB4")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB4)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.AIB4_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB6")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB6)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.AIB6_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB1")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB1)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.CNB1_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB2")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB2)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.CNB2_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB3")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB3)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.CNB3_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB4")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB4)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.CNB4_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB6")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB6)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.CNB6_vorlesung_link);
+			return;
+		}
+	
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB1")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB1)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.SPB1_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB2")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB2)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.SPB2_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB3")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB3)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.SPB3_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB4")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB4)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.SPB4_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB6")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB6)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.SPB6_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS1")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.MOS1)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.MOS1_vorlesung_link);
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS2")){
+			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.MOS2)+".ics";
+			createFile();
+			url = getActivity().getString(R.string.MOS2_vorlesung_link);
+			return;
+		}
+		
+
+	}
+
+	private void createFile() {
+
+		file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
+				"/MOS_vorlesungsplan/" + fileName);
+
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		
 		
 	}
 
