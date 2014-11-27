@@ -60,11 +60,11 @@ public class MainActivity extends Activity {
         // Drawermenu Header und Foot (icons)
 
         LayoutInflater inflater = getLayoutInflater();
-        // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
-        //        false);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
+                false);
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer, mDrawerList,
                 false);
-        // mDrawerList.addHeaderView(header, null, false);
+        mDrawerList.addHeaderView(header, null, false);
         mDrawerList.addFooterView(footer, null, true);
 
         // list the drawer items
@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
                 break;
             case R.id.buttonBudget:
                 fragment = new BudgetRechner();
-                openFragment(fragment, 0);//hier darf nicht 0 stehen, da das schon von HomeView genutzt wird
+                openFragment(fragment, -3);//hier darf nicht 0 stehen, da das schon von HomeView genutzt wird
                 break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
@@ -243,25 +243,26 @@ public class MainActivity extends Activity {
         fragment = null;
 
         switch (position) {
-            case 0:
+            case 0: //when Header is selected
+            case 1: //when first element after header is selected 
                 fragment = new HomeFragment();
                 break;
-            case 1:
+            case 2:
                 fragment = new StudiengangFragment();
                 break;
-            case 2:
+            case 3:
                 fragment = new KontaktFragment();
                 break;
-            case 3:
+            case 4:
                 fragment = new CampusFragment();
                 break;
-            case 4:
+            case 5:
                 fragment = new WebmailFragment();
                 break;
-            case 5:
+            case 6:
                 fragment = new VorlesungsplanFragment(_DownloadManager);
                 break;
-            case 6:
+            case 7:
                 fragment = new WebsiteFragment();
                 break;
 
@@ -281,8 +282,8 @@ public class MainActivity extends Activity {
             //change the title to actuall fragment depended on position
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
-            //position of RSS:
-	            case 0:
+            	//position of BudgetRechner:
+	            case -3:
 	            	setTitle("BudgetRechner");
 	                break;
                 //position of RSS:
