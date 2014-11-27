@@ -138,14 +138,14 @@ public class MainActivity extends Activity {
             case R.id.rssreader:
                 //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
                 //startActivity(intent);
-            	fragment = new ReadFragment();
+            	fragment = new RSSFragment();
                 //FragmentManager fragmentManager = getFragmentManager();
                 //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             	openFragment(fragment, -2);
                 break;
             case R.id.buttonBudget:
-//                fragment = new BudgetRechner();
-//                openFragment(fragment, 0);
+                fragment = new BudgetRechner();
+                openFragment(fragment, 0);//hier darf nicht 0 stehen, da das schon von HomeView genutzt wird
                 break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);

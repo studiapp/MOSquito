@@ -132,7 +132,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 		_buttonUpdate.setOnClickListener(clickListener);
 		_buttonShow.setOnClickListener(clickListener);
 		
-		new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").mkdir();
+		new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").mkdirs();
 		
 		if( new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").listFiles().length > 0){
 			file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").listFiles()[0];
