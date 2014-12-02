@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <Button
+                android:id="@+id/ButtonModule"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Module/\nSemester"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonSemester1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonSemester2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="2"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonSemester3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonSemester4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="4"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonSemester5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="5"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <Button
+                android:id="@+id/ButtonS3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="5"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS3M1_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Thesis"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <Button
+                android:id="@+id/ButtonS2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="2"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS2M1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Infrastrukturen\nder\nKommunikation"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS2M2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Sichere\nCloud-Dienste"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS2M3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Software\nfür mobile\nSysteme"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS2M4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Projekt"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS2M5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Wahlpflichtmodul 2"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <Button
+                android:id="@+id/ButtonS1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayDark"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS1M1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Assistive\nSysteme"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS1M2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Ergonomie"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS1M3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Software\nEngineering\nmobiler\nSysteme"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS1M4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Mobilität\nund\nInnovation"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/ButtonS1M5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1sp"
+                android:layout_weight="1"
+                android:background="@color/HFUGrayLight"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2sp"
+                android:text="Wahlpflichtmodul 1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Drücke auf ein Modul um Beschreibung herunter zu laden)" />
+    </LinearLayout>
+
+</RelativeLayout>

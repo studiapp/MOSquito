@@ -135,6 +135,9 @@ public class MainActivity extends Activity {
         
         switch (v.getId()) {
 
+        	case R.id.buttonStudiStrukt:
+        		fragment = new StudiStrukturFragment();
+        		openFragment(fragment, -4);
             case R.id.rssreader:
                 //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
                 //startActivity(intent);
@@ -282,6 +285,9 @@ public class MainActivity extends Activity {
             //change the title to actuall fragment depended on position
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
+            	case -4:
+            		setTitle("Studiengang Struktur");
+            		break;
             	//position of BudgetRechner:
 	            case -3:
 	            	setTitle("BudgetRechner");

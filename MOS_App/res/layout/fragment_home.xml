@@ -48,5 +48,14 @@
         android:layout_alignRight="@+id/buttonFelix"
         android:onClick="onClick"
         android:text="Budget" />
+    
+        <Button
+        android:id="@+id/buttonStudiStrukt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonBudget"
+        android:layout_alignLeft="@+id/buttonBudget"
+        android:onClick="onClick"
+        android:text="StudiStruktur" />
 
 </RelativeLayout>
