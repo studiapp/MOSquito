@@ -19,5 +19,91 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-
+    
+	<!--  Strings for Points of Interest fragment_poi -->	
+	<string name="latitude">Latitude : </string>
+	<string name="longitude">Longitude : </string>
+	<string name="accuracy">Accuracy : </string>
+	<string name="provider">Provider : </string>
+	
+    <!-- Items for Spinners in fragment_vorlesung -->
+    <string-array name="studiengang">
+        <item>AIB</item>
+        <item>CNB</item>
+        <item>SPB</item>
+        <item>MOS</item>
+    </string-array>
+    
+    <string-array name="Semester_AIB">
+        <item>AIB1</item>
+        <item>AIB2</item>
+        <item>AIB3</item>
+        <item>AIB4</item>
+        <item>AIB6</item>
+    </string-array>
+    
+    <string-array name="Semester_CNB">
+        <item>CNB1</item>
+        <item>CNB2</item>
+        <item>CNB3</item>
+        <item>CNB4</item>
+        <item>CNB6</item>
+    </string-array>
+    
+    <string-array name="Semester_SPB">
+        <item>SPB1</item>
+        <item>SPB2</item>
+        <item>SPB3</item>
+        <item>SPB4</item>
+        <item>SPB6</item>
+    </string-array>
+    
+    <string-array name="Semester_MOS">
+        <item>MOS1</item>
+        <item>MOS2</item>
+    </string-array>
+    
+   	<!-- Links to download the different course schedules -->
+   	
+   	<string name="AIB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2493&amp;lan=de</string>
+    <string name="AIB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2496&amp;lan=de</string>
+    <string name="AIB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2497&amp;lan=de</string>
+    <string name="AIB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2498&amp;lan=de</string>
+    <string name="AIB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2501&amp;lan=de</string>
+    
+    <string name="CNB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2348&amp;lan=de</string>
+    <string name="CNB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2503&amp;lan=de</string>
+    <string name="CNB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2504&amp;lan=de</string>
+    <string name="CNB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2505&amp;lan=de</string>
+    <string name="CNB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2507&amp;lan=de</string>
+    
+    <string name="SPB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2193&amp;lan=de</string>
+    <string name="SPB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2200&amp;lan=de</string>
+    <string name="SPB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2202&amp;lan=de</string>
+    <string name="SPB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2203&amp;lan=de</string>
+    <string name="SPB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2210&amp;lan=de</string>
+    
+    <string name="MOS1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2534&amp;lan=de</string>
+    <string name="MOS2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2535&amp;lan=de</string>
+    
+    <string name="AIB1">AIB1</string>
+    <string name="AIB2">AIB2</string>
+    <string name="AIB3">AIB3</string>
+    <string name="AIB4">AIB4</string>
+    <string name="AIB6">AIB6</string>
+    
+    <string name="CNB1">CNB1</string>
+    <string name="CNB2">CNB2</string>
+    <string name="CNB3">CNB3</string>
+    <string name="CNB4">CNB4</string>
+    <string name="CNB6">CNB6</string>
+    
+    <string name="SPB1">SPB1</string>
+    <string name="SPB2">SPB2</string>
+    <string name="SPB3">SPB3</string>
+    <string name="SPB4">SPB4</string>
+    <string name="SPB6">SPB6</string>
+    
+	<string name="MOS1">MOS1</string>
+	<string name="MOS2">MOS2</string>
 </resources>

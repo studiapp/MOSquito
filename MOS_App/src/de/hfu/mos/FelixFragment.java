@@ -12,10 +12,10 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 public class FelixFragment extends Fragment {
 	
@@ -78,14 +78,20 @@ public class FelixFragment extends Fragment {
 			// forces page to open in webView instead of Browser
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+								
+				if (url.contains(".pdf") ||
+						url.contains(".doc") ||
+						url.contains(".txt") ||
+						url.contains(".zip") ||
+						url.contains(".rar") ||
+						url.contains(".png")) {
 				
-				Toast.makeText(getActivity(), url, Toast.LENGTH_LONG).show();
-				
-				if (url.contains(".pdf")) {
+					String cookie = CookieManager.getInstance().getCookie(url);
 					Request request = new Request(Uri.parse(url));
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 					request.setDestinationInExternalPublicDir(
 							Environment.DIRECTORY_DOWNLOADS, url.substring(url.lastIndexOf("/", url.length())));
+					request.addRequestHeader("Cookie", cookie);
 					_DownloadManager.enqueue(request);
 
 				} else

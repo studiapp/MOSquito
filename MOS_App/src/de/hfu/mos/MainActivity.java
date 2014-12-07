@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -45,7 +44,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);       
 
         //init Downloadmanager
         _DownloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
@@ -146,8 +145,12 @@ public class MainActivity extends Activity {
                 break;
             case R.id.buttonBudget:
                 fragment = new BudgetRechner();
-                openFragment(fragment, 0);
+                openFragment(fragment, 5);
                 break;
+            case R.id.buttonMap:
+            	Intent hfuMap = new Intent(this,SensorFragment.class);
+                startActivity(hfuMap);
+            	break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
                 openFragment(fragment, -1);
@@ -260,7 +263,7 @@ public class MainActivity extends Activity {
                 fragment = new WebmailFragment();
                 break;
             case 5:
-                fragment = new VorlesungsplanFragment();
+                fragment = new VorlesungsplanFragment(_DownloadManager);
                 break;
             case 6:
                 fragment = new WebsiteFragment();
@@ -283,7 +286,7 @@ public class MainActivity extends Activity {
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
             //position of RSS:
-	            case 0:
+	            case 5:
 	            	setTitle("BudgetRechner");
 	                break;
                 //position of RSS:

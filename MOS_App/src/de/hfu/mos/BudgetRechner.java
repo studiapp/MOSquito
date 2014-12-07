@@ -2,22 +2,29 @@ package de.hfu.mos;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ListFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 
+//implements OnItemClickListener 
+public class BudgetRechner extends Fragment implements View.OnClickListener, OnItemClickListener  {
 
-public class BudgetRechner extends Fragment implements OnItemClickListener  {
+    private static final int LENGTH_SHORT = 0;
 
-    @Override
+
+	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     	View rootView = inflater.inflate(R.layout.fragment_graphauswahl, container, false);
@@ -31,10 +38,60 @@ public class BudgetRechner extends Fragment implements OnItemClickListener  {
         Button mos  = (Button) rootView.findViewById(R.id.mos);
         Button verglmaster  = (Button) rootView.findViewById(R.id.verglmaster);
         
-        return rootView;
- 
-    }
+        ai.setOnClickListener(this);
+        cn.setOnClickListener(this);
+        spb.setOnClickListener(this);
+        verglbachelor.setOnClickListener(this);
+        in.setOnClickListener(this);
+        mos.setOnClickListener(this);
+        verglmaster.setOnClickListener(this);
 
+        
+        
+        return rootView;
+
+    }
+	
+	
+	
+	
+	
+		public void onClick(View v){
+			Fragment fragment = null;
+	    	switch(v.getId()){   	
+
+	    	case R.id.cn:
+	    		Toast.makeText(getActivity(), "läuft", LENGTH_SHORT).show();
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;
+	    	case R.id.ai:
+	    		fragment = new LineGraph(0,0,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;    				
+	    	case R.id.spb:
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;
+	    	case R.id.verglbachelor:
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;
+	    	case R.id.mos:
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;
+	    	case R.id.in:
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		break;
+	    	case R.id.verglmaster:
+	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);;
+	    		break;
+	    	default:
+	    		break;
+	    		}
+	    	//openFragment(fragment, position);
+	        if (fragment != null) {
+	            FragmentManager fragmentManager = getFragmentManager();
+	            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();}
+       }
+
+	
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -43,7 +100,8 @@ public class BudgetRechner extends Fragment implements OnItemClickListener  {
     	switch(view.getId()){   	
 
     	case R.id.cn:
-        	fragment = new LineGraph(0,0,0,2,3,3,4,5,6,7,8);
+    		//Toast.makeText(getActivity(), "läuft", LENGTH_SHORT).show();
+    		fragment = new LineGraph(0,0,0,2,3,3,4,5,6,7,8);
     		break;
     	case R.id.ai:
     		fragment = new LineGraph(0,0,0,2,3,3,4,5,6,7,8);

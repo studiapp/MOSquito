@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.HttpAuthHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class WebmailFragment extends Fragment {
 	
 	private WebView _WebView;
+	private boolean showHint = true;
 		
 	//String to display when no internet available:
     private String noInternet = "<html><body>No internet available! Try again later.</body></html>";
@@ -55,16 +58,7 @@ public class WebmailFragment extends Fragment {
 
 		_WebView.getSettings().setDisplayZoomControls(false);
 
-		_WebView.setWebViewClient(new WebViewClient() {
-
-			// forces page to open in webView instead of Browser
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				view.loadUrl(url);
-
-				return true;
-			}
-		});
+		_WebView.setWebViewClient(new WebViewClient());
 
 		_WebView.setWebChromeClient(new WebChromeClient());
 

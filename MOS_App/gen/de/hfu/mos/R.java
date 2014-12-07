@@ -9,9 +9,16 @@ package de.hfu.mos;
 
 public final class R {
     public static final class array {
+        public static final int Semester_AIB=0x7f070002;
+        public static final int Semester_CNB=0x7f070003;
+        public static final int Semester_MOS=0x7f070005;
+        public static final int Semester_SPB=0x7f070004;
         /**  Nav Drawer Menu Items 
          */
         public static final int navigation_drawer_items_array=0x7f070000;
+        /**  Items for Spinners in fragment_vorlesung 
+         */
+        public static final int studiengang=0x7f070001;
     }
     public static final class attr {
     }
@@ -53,65 +60,119 @@ public final class R {
         public static final int ic_nav_website=0x7f020011;
         public static final int ic_studiportal=0x7f020012;
         public static final int press=0x7f020013;
+        public static final int student=0x7f020014;
+        public static final int students=0x7f020015;
     }
     public static final class id {
-        public static final int action_search=0x7f0a001e;
-        public static final int ai=0x7f0a000b;
-        public static final int bib_button=0x7f0a0006;
-        public static final int buttonBudget=0x7f0a0015;
-        public static final int buttonFelix=0x7f0a0014;
-        public static final int cn=0x7f0a000a;
+        public static final int action_search=0x7f0a002a;
+        public static final int ai=0x7f0a000e;
+        public static final int bib_button=0x7f0a0009;
+        public static final int buttonBudget=0x7f0a0018;
+        public static final int buttonFelix=0x7f0a0017;
+        public static final int buttonMap=0x7f0a0019;
+        public static final int button_showVorlesungsplan=0x7f0a001f;
+        public static final int button_updateVorlesungsplan=0x7f0a001c;
+        public static final int chart_container=0x7f0a0004;
+        public static final int cn=0x7f0a000d;
         public static final int content_frame=0x7f0a0001;
         public static final int drawer_layout=0x7f0a0000;
-        public static final int fb_button=0x7f0a0003;
-        public static final int imageViewIcon=0x7f0a001b;
-        public static final int imageView_Campus=0x7f0a0007;
-        public static final int in=0x7f0a0010;
-        public static final int itemTitle=0x7f0a001d;
+        public static final int empty_Layout=0x7f0a0005;
+        public static final int fb_button=0x7f0a0006;
+        public static final int imageViewIcon=0x7f0a0026;
+        public static final int imageView_Campus=0x7f0a000a;
+        public static final int in=0x7f0a0013;
+        public static final int itemTitle=0x7f0a0028;
         public static final int left_drawer=0x7f0a0002;
-        public static final int listRSS=0x7f0a001a;
-        public static final int listView=0x7f0a0016;
-        public static final int mensa_button=0x7f0a0005;
-        public static final int mos=0x7f0a000f;
-        public static final int progressBar=0x7f0a0017;
-        public static final int rssreader=0x7f0a0013;
-        public static final int spb=0x7f0a000c;
-        public static final int studi_button=0x7f0a0004;
-        public static final int textViewName=0x7f0a001c;
-        public static final int tvbachelor=0x7f0a000e;
-        public static final int tvmaster=0x7f0a0012;
-        public static final int txtLabel=0x7f0a0008;
-        public static final int verglbachelor=0x7f0a000d;
-        public static final int verglmaster=0x7f0a0011;
-        public static final int webView_Felix=0x7f0a0009;
-        public static final int webView_WebMail=0x7f0a0018;
-        public static final int webView_Website=0x7f0a0019;
+        public static final int linearLayout_Vorlesung=0x7f0a0022;
+        public static final int listRSS=0x7f0a0025;
+        public static final int listView=0x7f0a001a;
+        public static final int mensa_button=0x7f0a0008;
+        public static final int mos=0x7f0a0012;
+        public static final int progressBar=0x7f0a001b;
+        public static final int rssreader=0x7f0a0016;
+        public static final int scrollView_Vorlesung=0x7f0a0021;
+        public static final int spb=0x7f0a000f;
+        public static final int spinnerSemester_Vorlesung=0x7f0a001e;
+        public static final int spinnerStudiengang_Vorlesung=0x7f0a001d;
+        public static final int studi_button=0x7f0a0007;
+        public static final int textViewName=0x7f0a0027;
+        public static final int textView_angezeigterPlan=0x7f0a0020;
+        public static final int tv_title=0x7f0a0003;
+        public static final int tvbachelor=0x7f0a0011;
+        public static final int tvmaster=0x7f0a0015;
+        public static final int txtLabel=0x7f0a000b;
+        public static final int verglbachelor=0x7f0a0010;
+        public static final int verglmaster=0x7f0a0014;
+        public static final int vorlesung_Textlayout=0x7f0a0029;
+        public static final int webView_Felix=0x7f0a000c;
+        public static final int webView_WebMail=0x7f0a0023;
+        public static final int webView_Website=0x7f0a0024;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int footer=0x7f030001;
-        public static final int fragment_campus=0x7f030002;
-        public static final int fragment_create=0x7f030003;
-        public static final int fragment_felix=0x7f030004;
-        public static final int fragment_graphauswahl=0x7f030005;
-        public static final int fragment_help=0x7f030006;
-        public static final int fragment_home=0x7f030007;
-        public static final int fragment_kontakte=0x7f030008;
-        public static final int fragment_read=0x7f030009;
-        public static final int fragment_rss=0x7f03000a;
-        public static final int fragment_studiengang=0x7f03000b;
-        public static final int fragment_vorlesungsplan=0x7f03000c;
-        public static final int fragment_webmail=0x7f03000d;
-        public static final int fragment_website=0x7f03000e;
-        public static final int header=0x7f03000f;
-        public static final int layout_rssreader=0x7f030010;
-        public static final int listview_item_row=0x7f030011;
-        public static final int rss_item=0x7f030012;
+        public static final int dashboard_chart=0x7f030001;
+        public static final int empty_layout=0x7f030002;
+        public static final int footer=0x7f030003;
+        public static final int fragment_campus=0x7f030004;
+        public static final int fragment_create=0x7f030005;
+        public static final int fragment_felix=0x7f030006;
+        public static final int fragment_graphauswahl=0x7f030007;
+        public static final int fragment_help=0x7f030008;
+        public static final int fragment_home=0x7f030009;
+        public static final int fragment_kontakte=0x7f03000a;
+        public static final int fragment_poi=0x7f03000b;
+        public static final int fragment_read=0x7f03000c;
+        public static final int fragment_rss=0x7f03000d;
+        public static final int fragment_studiengang=0x7f03000e;
+        public static final int fragment_vorlesungsplan=0x7f03000f;
+        public static final int fragment_webmail=0x7f030010;
+        public static final int fragment_website=0x7f030011;
+        public static final int header=0x7f030012;
+        public static final int layout_rssreader=0x7f030013;
+        public static final int listview_item_row=0x7f030014;
+        public static final int rss_item=0x7f030015;
+        public static final int vorlesung_textlayout=0x7f030016;
     }
     public static final class menu {
         public static final int main=0x7f090000;
     }
     public static final class string {
+        public static final int AIB1=0x7f060017;
+        /**  Links to download the different course schedules 
+         */
+        public static final int AIB1_vorlesung_link=0x7f060006;
+        public static final int AIB2=0x7f060018;
+        public static final int AIB2_vorlesung_link=0x7f060007;
+        public static final int AIB3=0x7f060019;
+        public static final int AIB3_vorlesung_link=0x7f060008;
+        public static final int AIB4=0x7f06001a;
+        public static final int AIB4_vorlesung_link=0x7f060009;
+        public static final int AIB6=0x7f06001b;
+        public static final int AIB6_vorlesung_link=0x7f06000a;
+        public static final int CNB1=0x7f06001c;
+        public static final int CNB1_vorlesung_link=0x7f06000b;
+        public static final int CNB2=0x7f06001d;
+        public static final int CNB2_vorlesung_link=0x7f06000c;
+        public static final int CNB3=0x7f06001e;
+        public static final int CNB3_vorlesung_link=0x7f06000d;
+        public static final int CNB4=0x7f06001f;
+        public static final int CNB4_vorlesung_link=0x7f06000e;
+        public static final int CNB6=0x7f060020;
+        public static final int CNB6_vorlesung_link=0x7f06000f;
+        public static final int MOS1=0x7f060026;
+        public static final int MOS1_vorlesung_link=0x7f060015;
+        public static final int MOS2=0x7f060027;
+        public static final int MOS2_vorlesung_link=0x7f060016;
+        public static final int SPB1=0x7f060021;
+        public static final int SPB1_vorlesung_link=0x7f060010;
+        public static final int SPB2=0x7f060022;
+        public static final int SPB2_vorlesung_link=0x7f060011;
+        public static final int SPB3=0x7f060023;
+        public static final int SPB3_vorlesung_link=0x7f060012;
+        public static final int SPB4=0x7f060024;
+        public static final int SPB4_vorlesung_link=0x7f060013;
+        public static final int SPB6=0x7f060025;
+        public static final int SPB6_vorlesung_link=0x7f060014;
         public static final int action_search=0x7f060002;
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
