@@ -103,4 +103,24 @@
 	<string name="MOS2">MOS2</string>
 	
 	<string name="HFUdomain">https://stundenplan.hs-furtwangen.de</string>
+	
+	<string name="Studistrukt_Header1">Allgemeines Ziel</string>
+	<string name="Studistrukt_Zeile1">- Master Niveau im Sinne des Qualifikationsrahmens für deutsche Hochschulabschlüsse (KMK Beschluss vom 22.4.2005)</string>
+	<string name="Studistrukt_Header2">ZIELE bezüglich FACHLICHER KOMPETENZEN</string>
+	<string name="Studistrukt_Zeile2_1">- Befähigung zur Analyse von Problemstellungen und zur Erarbeitung von Lösungsansätzen im Bereich „Mobilität“, 
+	    			insbesondere die Befähigung zur Konzeption, Entwurf und Umsetzung von Anwendungen für mobile Systeme</string>
+	<string name="Studistrukt_Zeile2_2">- Expertise für Definition, Entwurf und Umsetzung von Mobilitätslösungen aus mindestens einer Domäne der mobilen 
+	    			Assistenzsysteme wie z. B. die Bereiche Automotive, E-Mobility oder Ambient Assisted Living</string>
+	<string name="Studistrukt_Header3">ZIELE bezüglich ÜBERFACHLICHER KOMPETENZEN</string>
+	<string name="Studistrukt_Zeile3_1">- Informationsbedarf identifizieren, Wissen aufbauen und wissenschaftliches Urteilsvermögen bilden, um Lösungsstrategien 
+	    			für komplexe fachliche Fragestellungen zu entwickeln oder wissenschaftliche Arbeiten zu verfassen</string>
+	<string name="Studistrukt_Zeile3_2">- Erwerb von Entscheidungs-, Problemlösungs- und Teamkompetenz zur Entwicklung effizienter, 
+	    			marktorientierter und bedarfsgerechter Produktlösungen</string>
+	<string name="Studistrukt_Header4">BERUFSFELDORIENTIERTE ZIELE</string>
+	<string name="Studistrukt_Zeile4_1">- Softwarearchitektur für mobile Systeme und Anwendungen</string>
+	<string name="Studistrukt_Zeile4_2">- Produkt-Management und Projektleitung</string>
+	<string name="Studistrukt_Zeile4_3">- IT-Beratung</string>
+	
+	
+	
 </resources>

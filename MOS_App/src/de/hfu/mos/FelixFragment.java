@@ -1,5 +1,7 @@
 package de.hfu.mos;
 
+import java.io.File;
+
 import android.app.DownloadManager;
 import android.app.DownloadManager.Request;
 import android.app.Fragment;
@@ -86,6 +88,8 @@ public class FelixFragment extends Fragment {
 						url.contains(".rar") ||
 						url.contains(".png")) {
 				
+					new File(Environment.DIRECTORY_DOWNLOADS).mkdirs();
+					
 					String cookie = CookieManager.getInstance().getCookie(url);
 					Request request = new Request(Uri.parse(url));
 					request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);

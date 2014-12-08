@@ -1,5 +1,6 @@
 package de.hfu.mos;
 
+import android.R.menu;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.Fragment;
@@ -135,9 +136,6 @@ public class MainActivity extends Activity {
         
         switch (v.getId()) {
 
-        	case R.id.buttonStudiStrukt:
-        		fragment = new StudiStrukturFragment();
-        		openFragment(fragment, -4);
             case R.id.rssreader:
                 //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
                 //startActivity(intent);
@@ -199,7 +197,7 @@ public class MainActivity extends Activity {
     }
 
 
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -251,7 +249,7 @@ public class MainActivity extends Activity {
                 fragment = new HomeFragment();
                 break;
             case 2:
-                fragment = new StudiengangFragment();
+                fragment = new StudiengangFragment(_DownloadManager);
                 break;
             case 3:
                 fragment = new KontaktFragment();
