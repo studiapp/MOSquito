@@ -247,7 +247,7 @@ public class MainActivity extends Activity {
                 fragment = new HomeFragment();
                 break;
             case 1:
-                fragment = new StudiengangFragment();
+                fragment = new StudiengangFragment(_DownloadManager);
                 break;
             case 2:
                 fragment = new KontaktFragment();
@@ -259,7 +259,7 @@ public class MainActivity extends Activity {
                 fragment = new WebmailFragment();
                 break;
             case 5:
-                //fragment = new VorlesungsplanFragment(_DownloadManager);
+                fragment = new VorlesungsplanFragment(_DownloadManager);
                 break;
             case 6:
                 fragment = new WebsiteFragment();
