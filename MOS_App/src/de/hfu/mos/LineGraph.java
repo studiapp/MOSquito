@@ -112,7 +112,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 		mRenderer.addSeriesRenderer(renderer);
 		mRenderer.addSeriesRenderer(renderer2);
-		mRenderer.setChartTitle("Studiengang Informatik");
+		mRenderer.setChartTitle("");
 		
 		//overall graph settings
 		//mRenderer.setChartTitle("Test");

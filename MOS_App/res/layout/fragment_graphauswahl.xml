@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:onClick="onClick"
-        android:text="Computer Netze" />
+        android:text="IT-Consoulting" />
 
     <Button
         android:id="@+id/ai"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cn"
         android:layout_below="@+id/cn"
-        android:text="Angewandte Informatik" />
+        android:text="Anweder Support" />
 
     <Button
         android:id="@+id/spb"
@@ -32,7 +32,7 @@
         android:layout_alignLeft="@+id/ai"
         android:layout_alignRight="@+id/ai"
         android:layout_below="@+id/ai"
-        android:text="SW Produkt Management" />
+        android:text="Netzwerk" />
 
     <Button
         android:id="@+id/verglbachelor"
@@ -41,17 +41,8 @@
         android:layout_alignLeft="@+id/spb"
         android:layout_alignRight="@+id/spb"
         android:layout_below="@+id/spb"
-        android:text="Alle Bachelorstudiengänge" />
-
-    <TextView
-        android:id="@+id/tvbachelor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cn"
-        android:layout_alignParentTop="true"
-        android:text="Bachelorstudiengänge"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        android:text="Vertrieb-Außendienst" />
+	<!-- 
     <Button
         android:id="@+id/mos"
         android:layout_width="fill_parent"
@@ -88,5 +79,5 @@
         android:layout_marginTop="14dp"
         android:text="Masterstudiengänge"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+ 		-->
 </RelativeLayout>

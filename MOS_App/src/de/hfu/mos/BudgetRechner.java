@@ -34,17 +34,17 @@ public class BudgetRechner extends Fragment implements View.OnClickListener, OnI
         Button cn = (Button) rootView.findViewById(R.id.cn);
         Button spb = (Button) rootView.findViewById(R.id.spb);
         Button verglbachelor = (Button) rootView.findViewById(R.id.verglbachelor);
-        Button in = (Button) rootView.findViewById(R.id.in);
-        Button mos  = (Button) rootView.findViewById(R.id.mos);
-        Button verglmaster  = (Button) rootView.findViewById(R.id.verglmaster);
+        //Button in = (Button) rootView.findViewById(R.id.in);
+        //Button mos  = (Button) rootView.findViewById(R.id.mos);
+        ///Button verglmaster  = (Button) rootView.findViewById(R.id.verglmaster);
         
         ai.setOnClickListener(this);
         cn.setOnClickListener(this);
         spb.setOnClickListener(this);
         verglbachelor.setOnClickListener(this);
-        in.setOnClickListener(this);
-        mos.setOnClickListener(this);
-        verglmaster.setOnClickListener(this);
+        //in.setOnClickListener(this);
+        //mos.setOnClickListener(this);
+        //verglmaster.setOnClickListener(this);
 
         
         
@@ -59,20 +59,24 @@ public class BudgetRechner extends Fragment implements View.OnClickListener, OnI
 		public void onClick(View v){
 			Fragment fragment = null;
 	    	switch(v.getId()){   	
-
+	    	// IT-Consulting
 	    	case R.id.cn:
 	    		Toast.makeText(getActivity(), "l‰uft", LENGTH_SHORT).show();
-	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		fragment = new LineGraph(0,-12360,-22008,-7379,-22008,218,-10731,13245,8474,26765,28244,33655,42195,40043,49472,47096,57506,54883,66376,63480,76170);
 	    		break;
+	        // Anwender Support
 	    	case R.id.ai:
-	    		fragment = new LineGraph(0,0,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
-	    		break;    				
+	    		fragment = new LineGraph(0,-12667,-22008,-7698,-22008,-120,-10731,12870,8474,26352,28244,33199,42195,39539,49472,46540,57506,54269,66376,62802,76170);
+	    		break; 
+	        // Netzwerk
 	    	case R.id.spb:
-	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		fragment = new LineGraph(0,-12559,-22009,-7586,-22008,0,-10731,13002,8474,26497,28244,33359,42195,39717,49472,46735,57506,54485,66376,63041,76170);
 	    		break;
+	    	// Vertrieb-Auﬂendienst	
 	    	case R.id.verglbachelor:
-	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
+	    		fragment = new LineGraph(0,-12161,-22008,-7172,-22008,438,-10731,13487,8474,27033,28244,33950,42195,40369,49472,47456,57506,55280,66376,63919,76170);
 	    		break;
+	    	/*	
 	    	case R.id.mos:
 	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);
 	    		break;
@@ -83,8 +87,9 @@ public class BudgetRechner extends Fragment implements View.OnClickListener, OnI
 	    		fragment = new LineGraph(0,40452,0,42086,44000,44662,46693,49311,51553,54443,56919,60110,62843,66366,69384,73273,76605,80900,84578,89320,93381);;
 	    		break;
 	    	default:
-	    		break;
+	    		break;*/
 	    		}
+	    		
 	    	//openFragment(fragment, position);
 	        if (fragment != null) {
 	            FragmentManager fragmentManager = getFragmentManager();
@@ -112,6 +117,7 @@ public class BudgetRechner extends Fragment implements View.OnClickListener, OnI
     	case R.id.verglbachelor:
     		fragment = new LineGraph(1,30,34,45,57,77,89);
     		break;
+    	/*	
     	case R.id.mos:
     		fragment = new LineGraph(0,0,0,2,3,3,4,5,6,7,8);
     		break;
@@ -123,6 +129,7 @@ public class BudgetRechner extends Fragment implements View.OnClickListener, OnI
     		break;
     	default:
     		break;
+    		*/
     		}
     	//openFragment(fragment, position);
         if (fragment != null) {

@@ -53,10 +53,10 @@
         android:id="@+id/buttonMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonMap"
-        android:onClick="onClick"
+        android:layout_above="@+id/buttonBudget"
         android:layout_alignLeft="@+id/buttonBudget"
         android:layout_alignRight="@+id/buttonBudget"
-        android:text="Button" />
+        android:onClick="onClick"
+        android:text="HFUMap" />
 
 </RelativeLayout>

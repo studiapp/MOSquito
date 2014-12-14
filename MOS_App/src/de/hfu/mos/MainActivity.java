@@ -136,19 +136,15 @@ public class MainActivity extends Activity {
         switch (v.getId()) {
 
             case R.id.rssreader:
-                //Intent intent = new Intent(MainActivity.this, RSSReaderFragment.class);
-                //startActivity(intent);
             	fragment = new RSSFragment();
-                //FragmentManager fragmentManager = getFragmentManager();
-                //fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             	openFragment(fragment, -2);
                 break;
             case R.id.buttonBudget:
                 fragment = new BudgetRechner();
-                openFragment(fragment, 5);
+                openFragment(fragment, -3);
                 break;
             case R.id.buttonMap:
-            	Intent hfuMap = new Intent(this,SensorFragment.class);
+            	Intent hfuMap = new Intent(this,POIFragment.class);
                 startActivity(hfuMap);
             	break;
             case R.id.buttonFelix:
@@ -263,7 +259,7 @@ public class MainActivity extends Activity {
                 fragment = new WebmailFragment();
                 break;
             case 5:
-                fragment = new VorlesungsplanFragment(_DownloadManager);
+                //fragment = new VorlesungsplanFragment(_DownloadManager);
                 break;
             case 6:
                 fragment = new WebsiteFragment();
@@ -286,7 +282,7 @@ public class MainActivity extends Activity {
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
             //position of RSS:
-	            case 5:
+	            case -3:
 	            	setTitle("BudgetRechner");
 	                break;
                 //position of RSS:
