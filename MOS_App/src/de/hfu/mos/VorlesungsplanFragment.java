@@ -59,7 +59,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 	private TextView _AngezeigterPlan;
 	
 	private Vorlesung asynkTaskVorl;
-	private getHTML asynkTaskHTML;
+	private DownloadFileAndShow asynkTaskHTML;
 	
 	private ArrayAdapter<CharSequence> adapterStudiengang, adapterSemster;
 	
@@ -116,18 +116,21 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 			@Override
 			public void onClick(View v) {
 				
+				if(asynkTaskVorl != null)
+					asynkTaskVorl.cancel(true);
+				if(asynkTaskHTML != null)
+					asynkTaskHTML.cancel(true);
+				
 				try{
 				switch(v.getId()){
 				
 				case R.id.button_updateVorlesungsplan:
-				
-					setFile();
 					
-					if(file != null)
-						file.delete();
 					if(isOnline()){
-						downloadVorlesungsplan();
-						loadPlan(v);
+						
+						setFileName();
+						getFileLink();
+						
 					}
 					else 
 						Toast.makeText(getActivity(), "Sorry, no Internet available", Toast.LENGTH_LONG).show();
@@ -136,8 +139,8 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 					
 				case R.id.button_showVorlesungsplan:
 					
-					setFile();
-					loadPlan(v);
+					setFileName();
+					loadPlan();
 					break;
 				}
 				}catch(Exception e){}
@@ -152,12 +155,12 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 			file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +"/MOS_vorlesungsplan/").listFiles()[0];
 			fileName = file.getName();
 		}
-		loadPlan(null);
+		loadPlan();
 		
 		return rootView;
 	}
 	
-	class getHTML extends AsyncTask<String, Void, Void>{
+	class DownloadFileAndShow extends AsyncTask<String, Void, Void>{
 
 	@Override
 	protected Void doInBackground(String... arg0) {
@@ -194,12 +197,17 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 				link = link.replaceAll("amp;", "");
 				url = getActivity().getString(R.string.HFUdomain) + link;
 			}
-		}
-	
-
+			
+			if(file != null)
+				file.delete();
+			
+			downloadVorlesungsplan();
+			
+			loadPlan();
 	}
+}
 	
-	private void loadPlan(View v){
+	private void loadPlan(){
 
 		if(file != null && file.exists() ){
 			asynkTaskVorl = new Vorlesung();
@@ -500,142 +508,107 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 		
 	}
 	
-private void setFile() throws InterruptedException, ExecutionException{
+private void setFileName() throws InterruptedException, ExecutionException{
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB1")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB1)+".ics";
-			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.AIB1_vorlesung_link));
-				
+			createFile();				
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB2")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB2)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.AIB2_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB3")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB3)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.AIB3_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB4")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB4)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.AIB4_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB6")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.AIB6)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.AIB6_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB1")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB1)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.CNB1_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB2")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB2)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.CNB2_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB3")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB3)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.CNB3_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB4")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB4)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.CNB4_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB6")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.CNB6)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.CNB6_vorlesung_link));
 			return;
 		}
 	
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB1")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB1)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.SPB1_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB2")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB2)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.SPB2_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB3")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB3)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.SPB3_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB4")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB4)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.SPB4_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB6")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.SPB6)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.SPB6_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS1")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.MOS1)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.MOS1_vorlesung_link));
 			return;
 		}
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS2")){
 			fileName = "Vorlesungsplan_"+ getActivity().getString(R.string.MOS2)+".ics";
 			createFile();
-			asynkTaskHTML = new getHTML();
-			asynkTaskHTML.execute(getActivity().getString(R.string.MOS2_vorlesung_link));
 			return;
 		}
 		
@@ -647,6 +620,114 @@ private void setFile() throws InterruptedException, ExecutionException{
 
 		file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
 				"/MOS_vorlesungsplan/" + fileName);
+
+	}
+	
+private void getFileLink(){
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB1")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.AIB1_vorlesung_link));
+				
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB2")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.AIB2_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB3")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.AIB3_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB4")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.AIB4_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB6")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.AIB6_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB1")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.CNB1_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB2")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.CNB2_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB3")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.CNB3_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB4")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.CNB4_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("CNB6")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.CNB6_vorlesung_link));
+			return;
+		}
+	
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB1")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.SPB1_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB2")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.SPB2_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB3")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.SPB3_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB4")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.SPB4_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("SPB6")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.SPB6_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS1")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.MOS1_vorlesung_link));
+			return;
+		}
+		
+		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("MOS2")){
+			asynkTaskHTML = new DownloadFileAndShow();
+			asynkTaskHTML.execute(getActivity().getString(R.string.MOS2_vorlesung_link));
+			return;
+		}
+		
 
 	}
 
