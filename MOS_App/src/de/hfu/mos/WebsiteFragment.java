@@ -15,14 +15,21 @@ import android.webkit.WebViewClient;
 
 public class WebsiteFragment extends Fragment {
 	
-	
+	private String url;
 	private WebView _WebView;
 	
 	//This string shows when internet is not available
 	private String _noInternet = "<html><body>No internet available! Try again later.</body></html>";
 	
 	public WebsiteFragment() {
+
+        url = "http://www.hs-furtwangen.de/willkommen.html";
 	}
+
+    public WebsiteFragment(String search) {
+
+        url = "https://www.google.de/m/search?q=test&ie=utf-8&oe=utf-8&gws_rd=cr&ei=b5eNVNfpGY33aomMgbgD#q=" + search +" +site:www.hs-furtwangen.de";
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,7 +88,7 @@ public class WebsiteFragment extends Fragment {
 		_WebView.setWebChromeClient(new WebChromeClient());
 
 		if (isOnline())
-			_WebView.loadUrl("http://www.hs-furtwangen.de/willkommen.html");
+			_WebView.loadUrl(url);
 		else
 			_WebView.loadData(_noInternet, "text/html", null);
 
