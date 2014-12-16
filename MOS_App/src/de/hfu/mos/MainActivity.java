@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 public class MainActivity extends Activity {
 
@@ -26,6 +27,7 @@ public class MainActivity extends Activity {
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private SearchView searchView;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -201,9 +203,34 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fragment = new WebsiteFragment(query);
+                openFragment(fragment, 6);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+        });
         return true;
     }
 
+    @Override
+    public boolean onSearchRequested() {
+
+
+        return super.onSearchRequested();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
