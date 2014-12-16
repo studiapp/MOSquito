@@ -65,26 +65,26 @@
     
    	<!-- Links to download the different course schedules -->
    	
-   	<string name="AIB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2493&amp;lan=de</string>
-    <string name="AIB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2496&amp;lan=de</string>
-    <string name="AIB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2497&amp;lan=de</string>
-    <string name="AIB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2498&amp;lan=de</string>
-    <string name="AIB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2501&amp;lan=de</string>
+   	<string name="AIB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1430&amp;pg=AIB1</string>
+    <string name="AIB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1430&amp;pg=AIB2</string>
+    <string name="AIB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1430&amp;pg=AIB3</string>
+    <string name="AIB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1430&amp;pg=AIB4</string>
+    <string name="AIB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1430&amp;pg=AIB6</string>
     
-    <string name="CNB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2348&amp;lan=de</string>
-    <string name="CNB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2503&amp;lan=de</string>
-    <string name="CNB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2504&amp;lan=de</string>
-    <string name="CNB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2505&amp;lan=de</string>
-    <string name="CNB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2507&amp;lan=de</string>
+    <string name="CNB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1433&amp;pg=CNB1</string>
+    <string name="CNB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1433&amp;pg=CNB2</string>
+    <string name="CNB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1433&amp;pg=CNB3</string>
+    <string name="CNB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1433&amp;pg=CNB4</string>
+    <string name="CNB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1433&amp;pg=CNB6</string>
     
-    <string name="SPB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2193&amp;lan=de</string>
-    <string name="SPB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2200&amp;lan=de</string>
-    <string name="SPB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2202&amp;lan=de</string>
-    <string name="SPB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2203&amp;lan=de</string>
-    <string name="SPB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2210&amp;lan=de</string>
+    <string name="SPB1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1452&amp;pg=SPB1</string>
+    <string name="SPB2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1452&amp;pg=SPB2</string>
+    <string name="SPB3_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1452&amp;pg=SPB3</string>
+    <string name="SPB4_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1452&amp;pg=SPB4</string>
+    <string name="SPB6_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1452&amp;pg=SPB6</string>
     
-    <string name="MOS1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2534&amp;lan=de</string>
-    <string name="MOS2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/ical?type=pg&amp;puid=8&amp;pgid=2535&amp;lan=de</string>
+    <string name="MOS1_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1538&amp;pg=MOS1</string>
+    <string name="MOS2_vorlesung_link">https://stundenplan.hs-furtwangen.de/splan/std?act=tt&amp;lan=de&amp;pu=-1&amp;sel=pg&amp;og=1538&amp;pg=MOS2</string>
     
     <string name="AIB1">AIB1</string>
     <string name="AIB2">AIB2</string>
