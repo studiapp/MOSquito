@@ -133,5 +133,10 @@
     <string name="msg_new_letter">This station has a letter to %1$s. Do you want to deliver it for %2$d?</string>
     <string name="no_new_letter">This station has no new letter to deliver.</string>
     <string name="has_location">Location found</string>
+
+    <!-- HOME SCREEN STRINGS -->
+    <string name="home_intro">Im neuen innovativen Masterstudiengang Mobile Systeme können Sie die Studienschwerpunkte Mobilität und
+        assistive Systeme in den Anwendungsfeldern Verkehr, Gesundheit oder Bildung vertiefen. Der Studiengang eignet sich für
+        Absolventen der Informatik und angrenzender Fachgebiete.</string>
 		
 </resources>
