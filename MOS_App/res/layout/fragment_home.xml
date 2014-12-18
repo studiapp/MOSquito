@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:padding="16dp">
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
 
     <LinearLayout
@@ -53,6 +56,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="3dp"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:scaleType="fitXY"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -71,6 +77,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:scaleType="fitXY"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -93,14 +102,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/home_bilderfeld">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3sp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/home_videotext" />
+
+            <ImageView
+                android:id="@+id/video_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/videoclip"/>
         </LinearLayout>
 
         <LinearLayout
@@ -109,6 +129,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/home_text_1"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:text="Weitere Funktionen"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3sp"
+                android:layout_marginBottom="10dp"
+                android:background="#000000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
