@@ -36,6 +36,7 @@ public class StartActivity extends Activity implements
                 StartActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
                         startActivity(new Intent(StartActivity.this, MainActivity.class));
+                        finish();
                     }
                 });
             }
