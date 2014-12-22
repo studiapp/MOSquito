@@ -11,6 +11,4 @@
     <dimen name="mail">16sp</dimen>
     <dimen name="room">12sp</dimen>
     
-    <bool name="isTablet">false</bool>
-
 </resources>
