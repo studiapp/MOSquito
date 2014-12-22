@@ -9,7 +9,8 @@
         android:paddingBottom="8dp"
     	android:paddingLeft="16dp"
     	android:paddingRight="16dp"
-    	android:paddingTop="8dp">
+    	android:paddingTop="8dp"
+    	android:background="@color/White">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Der Masterstudiengang besteht aus drei Semestern. Jedes Semester enthält Module von insgesamt 30 Leistungspunkten."
+                android:lineSpacingExtra="3sp"
                 android:textSize="14sp" />
 
             <ImageView
@@ -393,6 +395,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile1"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -415,6 +418,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile2_1"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -423,6 +427,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile2_2"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -445,6 +450,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile3_1"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -453,6 +459,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile3_2"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -475,6 +482,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile4_1"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -483,6 +491,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile4_2"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />
@@ -491,6 +500,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Studistrukt_Zeile4_3"
+                android:lineSpacingExtra="3sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginBottom="4sp"
                 android:textSize="14sp" />

@@ -150,7 +150,7 @@
                 android:layout_weight="5">
 
                 <Button
-                    android:id="@+id/ButtonS3"
+                    android:id="@+id/ButtonS2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1sp"
@@ -275,7 +275,7 @@
                     android:layout_weight="5">
 
                     <Button
-                        android:id="@+id/ButtonS3"
+                        android:id="@+id/ButtonS1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1sp"
