@@ -62,11 +62,11 @@ public class MainActivity extends Activity {
         // Drawermenu Header und Foot (icons)
 
         LayoutInflater inflater = getLayoutInflater();
-        // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
-        //        false);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
+                false);
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer, mDrawerList,
                 false);
-        // mDrawerList.addHeaderView(header, null, false);
+        mDrawerList.addHeaderView(header, null, false);
         mDrawerList.addFooterView(footer, null, true);
 
         // list the drawer items
@@ -270,25 +270,26 @@ public class MainActivity extends Activity {
         fragment = null;
 
         switch (position) {
-            case 0:
+            case 0: //this is because of the header
+            case 1:	//here is the actual first element of the drawer
                 fragment = new HomeFragment();
                 break;
-            case 1:
+            case 2:
                 fragment = new StudiengangFragment(_DownloadManager);
                 break;
-            case 2:
+            case 3:
                 fragment = new KontaktFragment();
                 break;
-            case 3:
+            case 4:
                 fragment = new CampusFragment();
                 break;
-            case 4:
+            case 5:
                 fragment = new WebmailFragment();
                 break;
-            case 5:
+            case 6:
                 fragment = new VorlesungsplanFragment(_DownloadManager);
                 break;
-            case 6:
+            case 7:
                 fragment = new WebsiteFragment();
                 break;
 
