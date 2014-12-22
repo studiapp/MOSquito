@@ -32,7 +32,16 @@ public class StudiengangFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_studiengang, container, false);
+		View rootView;
+		
+		boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+		
+		if (tabletSize) {
+			rootView = inflater.inflate(R.layout.fragment_studiengang_tab, container, false);
+		} else {
+			rootView = inflater.inflate(R.layout.fragment_studiengang, container, false);
+		}
+		
 		
 		OnClickListener clickListener = new OnClickListener() {
 			
