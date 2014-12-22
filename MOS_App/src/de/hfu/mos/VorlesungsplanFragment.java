@@ -333,7 +333,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 			try {
 				_Layout.removeAllViews();
 				_Layout.addView(this.get());
-				Toast.makeText(getActivity(), "fertig", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getActivity(), "fertig", Toast.LENGTH_SHORT).show();
 				file = null;
 				_AngezeigterPlan.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 				_AngezeigterPlan.setText(fileName);
