@@ -7,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import de.hfu.mos.campus.TouchImageView;
+
 public class CampusFragment extends Fragment {
-	
-	private ImageView _ImageView;
+
 	
 	public CampusFragment() {
 	}
@@ -17,11 +18,14 @@ public class CampusFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_campus, container, false);
+		// View rootView = inflater.inflate(R.layout.fragment_campus, container, false);
 
-		_ImageView = (ImageView) rootView.findViewById(R.id.imageView_Campus);
+        TouchImageView img = new TouchImageView(getActivity());
+        img.setImageResource(R.drawable.ic_campus_lageplan);
+        img.setMaxZoom(4f);
+
 		
-		return rootView;
+		return img;
 	}
 
 }
