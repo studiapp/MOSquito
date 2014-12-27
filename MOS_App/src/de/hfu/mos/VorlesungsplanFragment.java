@@ -130,7 +130,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 					if(isOnline()){
 						
 						setFileName();
-						getFileLink();
+						getFileLinkAndShowFile();
 						
 					}
 					else 
@@ -622,7 +622,7 @@ private void setFileName() throws InterruptedException, ExecutionException{
 
 	}
 	
-private void getFileLink(){
+private void getFileLinkAndShowFile(){
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB1")){
 			asynkTaskHTML = new DownloadFileAndShow();
