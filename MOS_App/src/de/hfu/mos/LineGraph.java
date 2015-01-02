@@ -23,6 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +51,14 @@ import android.widget.LinearLayout;
 public class LineGraph extends Fragment{
 	
 public int counter = 0;	
+public String toast = null;
+public String beruf = null;
 public ArrayList<Integer> coordinates;
-	
+public TextView header;
+
 @SuppressWarnings("deprecation")
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-	
 
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
@@ -130,14 +134,19 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
         View mChart = ChartFactory.getLineChartView(getActivity().getBaseContext(), dataset, mRenderer);
         // Adding the Line Chart to the LinearLayout
         chartContainer.addView(mChart);	
+        Toast.makeText(getActivity(), toast, TRIM_MEMORY_COMPLETE).show();
+        //getActivity().setContentView(R.layout.dashboard_chart);
+        header = (TextView) view.findViewById(R.id.tv_title);
+        header.setText(beruf);
 		return view;
 }
 
-
-	public LineGraph(int number, Integer...ints) {
+	//Constructor
+	public LineGraph(String selection, String toast, int number, Integer...ints) {
+		this.beruf = selection;
+		this.toast = toast;
 		this.counter = number;
-		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));
-		
+		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));		
 	}
 
 
