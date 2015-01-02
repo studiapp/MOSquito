@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-feature android:name="android.hardware.sensor.accelerometer"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     
     <uses-sdk
@@ -18,21 +19,33 @@
         android:targetSdkVersion="19" />
     
     <application
+        android:name="de.hfu.mos.kontakte.app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBar" >       
-        
+        android:theme="@style/CustomActionBar" >
+
+        <activity android:name="de.hfu.mos.StartActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+
+
         <activity
             android:name="de.hfu.mos.MainActivity"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".VideoViewActivity" />
         <activity android:name="de.hfu.mos.RSSReaderFragment">
         </activity>
         <activity android:name="de.hfu.mos.SensorFragment">
