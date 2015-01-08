@@ -10,6 +10,7 @@ import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer.FillOutsideLine;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -63,7 +64,10 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
 		XYSeriesRenderer renderer2 = new XYSeriesRenderer();
-		
+		FillOutsideLine fill1 = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ALL);
+		FillOutsideLine fill2 = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ALL);
+
+
 		if(counter == 0){
 		//BACHELOR
 		int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};	
@@ -71,12 +75,14 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		for(int i = 0; i < x.length; i = i+2){
 			series.add(x[i],coordinates.get(i));
 			//Linienstärke
-			renderer.setLineWidth(3f);
+			renderer.setLineWidth(5f);
 			renderer.setPointStyle(PointStyle.SQUARE);
 			renderer.setFillPoints(true);
 		}				
 		dataset.addSeries(series);		
-		renderer.setColor(Color.GREEN);		
+		renderer.setColor(Color.GREEN);	
+		fill1.setColor(Color.parseColor("#5500FF66"));
+		renderer.addFillOutsideLine(fill1);
 		//MASTER		
 		int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
 		//int[] b = {28,30,35,50,90,110};		
@@ -84,12 +90,14 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		for(int c = 1; c < a.length; c = c+2){
 			series2.add(a[c],coordinates.get(c));
 			//Linienstärke
-			renderer2.setLineWidth(3f);
+			renderer2.setLineWidth(5f);
 			renderer.setChartValuesTextSize(50);
 		}	
 		dataset.addSeries(series2);		
-		renderer2.setColor(Color.RED);		
-		} else if(counter == 0){			
+		renderer2.setColor(Color.RED);	
+		fill2.setColor(Color.parseColor("#55DB374A"));
+		renderer2.addFillOutsideLine(fill2);
+		} else if(counter == 1){			
 			//ALL BACHELOR || MASTER
 			int[] x = {1,2,3,4,5,6};
 			int[]y =  {30,30,30,30,30,30};		
@@ -118,14 +126,18 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		mRenderer.addSeriesRenderer(renderer2);
 		mRenderer.setChartTitle("");
 		
+
 		//overall graph settings
 		//mRenderer.setChartTitle("Test");
-		mRenderer.setLabelsTextSize(20);
-		mRenderer.setAxisTitleTextSize(20);
+		mRenderer.setLabelsTextSize(40);
+		mRenderer.setAxisTitleTextSize(40);
 		mRenderer.setXTitle("Alter in Jahren");
 		mRenderer.setYTitle("Gehalt in €");
-		mRenderer.setLegendHeight(50);
-		mRenderer.setLegendTextSize(20);
+		//mRenderer.setLegendHeight(80);
+		//renderer.setMargins(new int[] { top, left, bottom, right });
+		mRenderer.setMargins(new int[] {0, 60, 90,0});		
+		mRenderer.setLegendTextSize(40);
+		mRenderer.setLegendHeight(60);
 		
 		View view = inflater.inflate(R.layout.dashboard_chart, container, false);		
 		// Getting a reference to LinearLayout of the MainActivity Layout
