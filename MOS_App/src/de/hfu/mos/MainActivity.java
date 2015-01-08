@@ -70,15 +70,16 @@ public class MainActivity extends Activity {
         mDrawerList.addFooterView(footer, null, true);
 
         // list the drawer items
-        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[7];
+        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[8];
 
         drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_nav_home, "Home");
         drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_nav_studiengang, "Studiengang");
-        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_nav_kontakte, "Kontakt");
-        drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_nav_campus, "Campus");
-        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_nav_webmail, "Webmail");
-        drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_nav_vorlesungsplan, "Vorlesungsplan");
-        drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_nav_website, "Webseite");
+        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_nav_informatik, "Fakultät Informatik");
+        drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_nav_kontakte, "Kontakt");
+        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_nav_campus, "Campus");
+        drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_nav_webmail, "Webmail");
+        drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_nav_vorlesungsplan, "Vorlesungsplan");
+        drawerItem[7] = new ObjectDrawerItem(R.drawable.ic_nav_website, "Webseite");
 
         // Pass the folderData to our ListView adapter
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
@@ -277,18 +278,21 @@ public class MainActivity extends Activity {
                 fragment = new StudiengangFragment(_DownloadManager);
                 break;
             case 2:
-                fragment = new KontaktFragment();
+                fragment = new InformatikFragment ();
                 break;
             case 3:
-                fragment = new CampusFragment();
+                fragment = new KontaktFragment();
                 break;
             case 4:
-                fragment = new WebmailFragment();
+                fragment = new CampusFragment();
                 break;
             case 5:
-                fragment = new VorlesungsplanFragment(_DownloadManager);
+                fragment = new WebmailFragment();
                 break;
             case 6:
+                fragment = new VorlesungsplanFragment(_DownloadManager);
+                break;
+            case 7:
                 fragment = new WebsiteFragment();
                 break;
 

@@ -73,7 +73,12 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 		
 	//we need the Downloadmanager to download ics File from the HFU website.
 	//Downloadmanager has to be initialized in the mainActivity. Otherwise the application will crash
-	public VorlesungsplanFragment(DownloadManager dm) {
+	public VorlesungsplanFragment(){
+
+    }
+
+
+    public VorlesungsplanFragment(DownloadManager dm) {
 		
 		_DownloadManager = dm;
 	}
