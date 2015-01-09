@@ -42,42 +42,13 @@
         android:layout_alignRight="@+id/spb"
         android:layout_below="@+id/spb"
         android:text="Vertrieb-Außendienst" />
-	<!-- 
+
     <Button
         android:id="@+id/mos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/verglbachelor"
         android:layout_below="@+id/verglbachelor"
-        android:layout_marginTop="47dp"
-        android:onClick="onClick"
-        android:text="Mobile Systeme" />
+        android:text="Softwareentwicklung" />
 
-    <Button
-        android:id="@+id/in"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/verglbachelor"
-        android:layout_below="@+id/mos"
-        android:text="Informatik" />
-
-    <Button
-        android:id="@+id/verglmaster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/verglbachelor"
-        android:layout_alignRight="@+id/in"
-        android:layout_below="@+id/in"
-        android:text="Alle Masterstudiengänge" />
-
-    <TextView
-        android:id="@+id/tvmaster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mos"
-        android:layout_below="@+id/verglbachelor"
-        android:layout_marginTop="14dp"
-        android:text="Masterstudiengänge"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
- 		-->
 </RelativeLayout>

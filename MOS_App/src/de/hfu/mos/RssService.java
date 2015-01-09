@@ -11,11 +11,15 @@ import org.xmlpull.v1.XmlPullParserException;
 import de.hfu.mos.data.RssItem;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.provider.SyncStateContract.Constants;
 import android.util.Log;
+import android.widget.Toast;
 
 public class RssService extends IntentService {
 	 
@@ -30,7 +34,7 @@ public class RssService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //Log.d(Constants.TAG, "Service started");
-        List<RssItem> rssItems = null;
+        List<RssItem> rssItems = null;{
         try {
             PcWorldRssParser parser = new PcWorldRssParser();
             rssItems = parser.parse(getInputStream(RSS_LINK));
@@ -43,7 +47,9 @@ public class RssService extends IntentService {
         bundle.putSerializable(ITEMS, (Serializable) rssItems);
         ResultReceiver receiver = intent.getParcelableExtra(RECEIVER);
         receiver.send(0, bundle);
-    }
+        }
+        }
+    
  
     public InputStream getInputStream(String link) {
         try {
@@ -54,4 +60,7 @@ public class RssService extends IntentService {
             return null;
         }
     }
+    
+
+    
 }

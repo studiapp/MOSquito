@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="3sp"
                 android:layout_marginBottom="5sp"
-                android:background="#000000" />
+                android:background="@color/Raum" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="3sp"
                 android:layout_marginBottom="5sp"
-                android:background="#000000" />
+                android:background="@color/Raum" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                 android:layout_weight="5">
 
                 <Button
-                    android:id="@+id/ButtonS3"
+                    android:id="@+id/ButtonS2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1sp"
@@ -275,7 +275,7 @@
                     android:layout_weight="5">
 
                     <Button
-                        android:id="@+id/ButtonS3"
+                        android:id="@+id/ButtonS1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1sp"

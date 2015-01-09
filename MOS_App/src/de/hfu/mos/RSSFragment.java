@@ -6,10 +6,13 @@ import de.hfu.mos.RSSReaderFragment.GetRSSDataTask;
 import de.hfu.mos.data.RssItem;
 import de.hfu.mos.listeners.ListListener;
 import de.hfu.mos.util.RssReader;
+import android.R.string;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,7 +35,7 @@ public class RSSFragment extends Fragment implements OnItemClickListener{
     private ProgressBar progressBar;
     private ListView listView;
     private View view;
- 
+  
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +44,12 @@ public class RSSFragment extends Fragment implements OnItemClickListener{
  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view == null) {
+       
+    	if (view == null) {
             view = inflater.inflate(R.layout.fragment_rss, container, false);
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             listView = (ListView) view.findViewById(R.id.listView);
-            listView.setOnItemClickListener(this);
+            listView.setOnItemClickListener(this);         
             startService();
         } else {
             // If we are returning from a configuration change:
@@ -58,9 +62,15 @@ public class RSSFragment extends Fragment implements OnItemClickListener{
     }
  
     private void startService() {
+    	if(isOnline()){
         Intent intent = new Intent(getActivity(), RssService.class);
         intent.putExtra(RssService.RECEIVER, resultReceiver);
         getActivity().startService(intent);
+    	}
+        else{
+        Toast.makeText(getActivity(), "No internet available! Try again later.", Toast.LENGTH_SHORT).show();
+        
+        }	
     }
  
     /**
@@ -90,5 +100,13 @@ public class RSSFragment extends Fragment implements OnItemClickListener{
         Uri uri = Uri.parse(item.getLink());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+    
+	//looks for onlinestate //Redundanz WebMail <-> FelixLogin <-> Website
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

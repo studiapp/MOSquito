@@ -135,7 +135,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 					if(isOnline()){
 						
 						setFileName();
-						getFileLink();
+						getFileLinkAndShowFile();
 						
 					}
 					else 
@@ -169,12 +169,12 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 	class DownloadFileAndShow extends AsyncTask<String, Void, Void>{
 
 	@Override
-	protected Void doInBackground(String... arg0) {
+	protected Void doInBackground(String... url) {
 
 		
 			try {
 				HttpClient client = new DefaultHttpClient();
-				HttpGet request = new HttpGet(arg0[0]);
+				HttpGet request = new HttpGet(url[0]);
 				HttpResponse response = client.execute(request);
 
 				InputStream in = response.getEntity().getContent();
@@ -236,13 +236,13 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 	//here we sort the content by date
 	private Vector<Component> sortData(Calendar cal) throws ParseException{
 		
-		Vector<Component> testList = new Vector<Component>();
+		Vector<Component> tempList = new Vector<Component>();
 		
-		testList.addAll(cal.getComponents(Component.VEVENT));
+		tempList.addAll(cal.getComponents(Component.VEVENT));
 		
-		QuickSortCalendar.sortiere(testList);
+		QuickSortCalendar.sortiere(tempList);
 		
-		return testList;
+		return tempList;
 		
 	}
 	
@@ -338,7 +338,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 			try {
 				_Layout.removeAllViews();
 				_Layout.addView(this.get());
-				Toast.makeText(getActivity(), "fertig", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getActivity(), "fertig", Toast.LENGTH_SHORT).show();
 				file = null;
 				_AngezeigterPlan.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 				_AngezeigterPlan.setText(fileName);
@@ -369,9 +369,7 @@ public class VorlesungsplanFragment extends Fragment implements OnItemSelectedLi
 			java.util.Calendar tempDateStart = java.util.Calendar.getInstance();
 			//holds the EndDate and time of the event we are looking at
 			java.util.Calendar tempDateEnd = java.util.Calendar.getInstance();
-			
-	        //_Layout.removeAllViews();
-	        
+				        
 			view2 = inflater.inflate(R.layout.empty_layout,_Layout, false);
 			emptyLayout = (LinearLayout) view2.findViewById(R.id.empty_Layout);
 			
@@ -629,7 +627,7 @@ private void setFileName() throws InterruptedException, ExecutionException{
 
 	}
 	
-private void getFileLink(){
+private void getFileLinkAndShowFile(){
 		
 		if(_SpinnerSemester.getSelectedItemPosition() == adapterSemster.getPosition("AIB1")){
 			asynkTaskHTML = new DownloadFileAndShow();
