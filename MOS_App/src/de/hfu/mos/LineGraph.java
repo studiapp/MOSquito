@@ -76,7 +76,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
 		for(int i = 0; i < x.length; i = i+2){
 			series.add(x[i],coordinates.get(i));
-			//Linienst‰rke
+			// Linienst‰rke
 			renderer.setLineWidth(5f);
 			renderer.setPointStyle(PointStyle.SQUARE);
 			renderer.setFillPoints(true);
