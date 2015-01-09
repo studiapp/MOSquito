@@ -44,7 +44,7 @@ public class BudgetRechner extends Fragment implements View.OnClickListener  {
         Button mos  = (Button) rootView.findViewById(R.id.mos);   
         final Button eigene = (Button) rootView.findViewById(R.id.indi);
 		       
-        // Eigene Berechnung gets enabled if EditTexts were used
+        // Eigene Berechnung gets enabled if EditText were used
 		eigene.setEnabled(false);		
 		tvb.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 		      @Override

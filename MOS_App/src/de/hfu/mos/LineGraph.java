@@ -103,7 +103,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		} 
 		// Eigene Berechnung Funktion
 		else if(counter == 1){			
-			//BACHELOR
+			// BACHELOR
 			int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
 			float eingangswertb = (float) eigeneberb;		
 			TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
@@ -120,7 +120,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 			renderer.setColor(Color.GREEN);	
 			fill1.setColor(Color.parseColor("#5500FF66"));
 			renderer.addFillOutsideLine(fill1);
-			//MASTER		
+			// MASTER		
 			int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
 			float eingangswertm = (float) eigeneberm;	
 			TimeSeries series2 = new TimeSeries("Abschluﬂ Master");
