@@ -56,6 +56,8 @@ public String toast = null;
 public String beruf = null;
 public ArrayList<Integer> coordinates;
 public TextView header;
+public int eigeneberb;
+public int eigeneberm;
 
 @SuppressWarnings("deprecation")
 @Override
@@ -71,7 +73,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		if(counter == 0){
 		//BACHELOR
 		int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};	
-		TimeSeries series = new TimeSeries("Bachelor");
+		TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
 		for(int i = 0; i < x.length; i = i+2){
 			series.add(x[i],coordinates.get(i));
 			//Linienst‰rke
@@ -86,7 +88,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		//MASTER		
 		int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
 		//int[] b = {28,30,35,50,90,110};		
-		TimeSeries series2 = new TimeSeries("Master");
+		TimeSeries series2 = new TimeSeries("Abschluﬂ Master");
 		for(int c = 1; c < a.length; c = c+2){
 			series2.add(a[c],coordinates.get(c));
 			//Linienst‰rke
@@ -97,26 +99,46 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		renderer2.setColor(Color.RED);	
 		fill2.setColor(Color.parseColor("#55DB374A"));
 		renderer2.addFillOutsideLine(fill2);
-		} else if(counter == 1){			
-			//ALL BACHELOR || MASTER
-			int[] x = {1,2,3,4,5,6};
-			int[]y =  {30,30,30,30,30,30};		
-			TimeSeries series = new TimeSeries("Bachelor");
-			for(int i = 0; i < x.length; i++){
-				series.add(x[i],y[i]);
+		
+		} 
+		// Eigene Berechnung Funktion
+		else if(counter == 1){			
+			//BACHELOR
+			int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
+			float eingangswertb = (float) eigeneberb;		
+			TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
+				series.add(25,eingangswertb);
+			for(int i = 2; i < x.length; i = i+2){
+				eingangswertb = (float) (eingangswertb * 1.2);
+				series.add(x[i],eingangswertb);
+				//Linienst‰rke
+				renderer.setLineWidth(5f);
+				renderer.setPointStyle(PointStyle.SQUARE);
+				renderer.setFillPoints(true);
 			}				
-			dataset.addSeries(series);			
-			renderer.setColor(Color.GREEN);			
+			dataset.addSeries(series);		
+			renderer.setColor(Color.GREEN);	
+			fill1.setColor(Color.parseColor("#5500FF66"));
+			renderer.addFillOutsideLine(fill1);
 			//MASTER		
-			int[] a = {1,2,3,4,5,6};
-			int[] b = {50,50,50,50,50,50};		
-			TimeSeries series2 = new TimeSeries("Master");
-			for(int c = 0; c < a.length; c++){
-				series2.add(a[c],b[c]);
+			int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
+			float eingangswertm = (float) eigeneberm;	
+			TimeSeries series2 = new TimeSeries("Abschluﬂ Master");
+			series2.add(25, 0);
+			series2.add(27, eingangswertm);
+			for(int c = 5; c < a.length; c = c+2){
+				eingangswertm = (float) (eingangswertm * 1.2);
+				series2.add(x[c],eingangswertm);;
+				//Linienst‰rke
+				renderer2.setLineWidth(5f);
+				renderer.setChartValuesTextSize(50);
 			}	
-			dataset.addSeries(series2);			
-			renderer2.setColor(Color.RED);			
-		} else {	
+			dataset.addSeries(series2);		
+			renderer2.setColor(Color.RED);	
+			fill2.setColor(Color.parseColor("#55DB374A"));
+			renderer2.addFillOutsideLine(fill2);		
+		} 
+		else {	
 			System.out.println("ERROR, wrong Paramater");
 		}
 	
@@ -136,7 +158,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		//mRenderer.setLegendHeight(80);
 		//renderer.setMargins(new int[] { top, left, bottom, right });
 		mRenderer.setMargins(new int[] {0, 60, 90,0});		
-		mRenderer.setLegendTextSize(40);
+		mRenderer.setLegendTextSize(30);
 		mRenderer.setLegendHeight(60);
 		
 		View view = inflater.inflate(R.layout.dashboard_chart, container, false);		
@@ -158,7 +180,11 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		this.beruf = selection;
 		this.toast = toast;
 		this.counter = number;
-		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));		
+		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));	
+		if(number == 1){
+		this.eigeneberb = this.coordinates.get(0);
+		this.eigeneberm = this.coordinates.get(1);
+		}
 	}
 
 
