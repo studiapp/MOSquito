@@ -15,27 +15,87 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 //implements OnItemClickListener 
 public class BudgetRechner extends Fragment implements View.OnClickListener  {
 
+	// for button Eigene Berechnung
+	public int eigeneb = 0;
+	public int  eigenem = 0;
+	public String bufferbs, bufferbm;
+	public float bufferb, bufferm;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     	View rootView = inflater.inflate(R.layout.fragment_graphauswahl, container, false);
-			         
+	
+    	final EditText tvb = (EditText) rootView.findViewById(R.id.etb);
+    	final EditText tvm = (EditText) rootView.findViewById(R.id.etm);
+    	
         Button ai = (Button) rootView.findViewById(R.id.ai);
         Button cn = (Button) rootView.findViewById(R.id.cn);
         Button spb = (Button) rootView.findViewById(R.id.spb);
         Button verglbachelor = (Button) rootView.findViewById(R.id.verglbachelor);
-        Button mos  = (Button) rootView.findViewById(R.id.mos);    
+        Button mos  = (Button) rootView.findViewById(R.id.mos);   
+        final Button eigene = (Button) rootView.findViewById(R.id.indi);
+		       
+        // Eigene Berechnung gets enabled if EditText were used
+		eigene.setEnabled(false);		
+		tvb.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		      @Override
+		      public void onFocusChange(View v, boolean hasFocus) {
+					eigene.setEnabled(true);
+		      }
+		    });
+		tvm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		      @Override
+		      public void onFocusChange(View v, boolean hasFocus) {
+						eigene.setEnabled(true);
+		      }
+		    });
+
         ai.setOnClickListener(this);
         cn.setOnClickListener(this);
         spb.setOnClickListener(this);
         verglbachelor.setOnClickListener(this);
         mos.setOnClickListener(this);     
+        
+        
+        eigene.setOnClickListener ( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	Fragment fragment = null;
+            	// try to convert values for Eigene Berechnung
+	    		String textb = tvb.getText().toString();
+	        	try {
+	        	   bufferbs = textb.replace(',', '.');
+	        	   bufferb = Float.parseFloat(bufferbs);
+	        	   eigeneb = (int) bufferb;
+	        	   Log.i("",eigeneb+" is a number");
+	        	} catch (NumberFormatException e) {
+	        	   Log.i("",eigeneb+"is not a number");
+	        	}
+	        	String textm = tvm.getText().toString();
+	        	try {
+	        	   bufferbm = textm.replace(',', '.');
+	        	   bufferm = Float.parseFloat(bufferbm);
+	        	   eigenem = (int) bufferm;
+	        	   Log.i("",eigenem+" is a number");
+	        	} catch (NumberFormatException e) {
+	        	   Log.i("",eigenem+"is not a number");
+	        	} 
+	        	fragment = new LineGraph("Eigene Berechnung","Eigene Berechnung",1, eigeneb, eigenem);
+	        	if (fragment != null) {
+		            FragmentManager fragmentManager = getFragmentManager();
+		            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+	        	}
+            }
+        });
         return rootView;
     }	
 	
@@ -61,7 +121,11 @@ public class BudgetRechner extends Fragment implements View.OnClickListener  {
 	    	// Softwareentwickler	
 	    	case R.id.mos:
 	    		fragment = new LineGraph("Softwareentwickler","Bacheloreinstiegsgehalt: 40.441,00 €",0,-12414,-22008,-7436,-22008,159,-10731,13179,8474,26692,28244,33575,42195,39954,49472,46998,57506,54775,66376,63361,76170);
-	    		break;   	
+	    		break;  
+	    	//case R.id.indi:
+
+	    		
+	    		//break;
 	    	default:
 	    		break;
 	    		}  	
