@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);       
+        setContentView(R.layout.activity_main);
 
         //init Downloadmanager
         _DownloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
@@ -62,23 +62,24 @@ public class MainActivity extends Activity {
         // Drawermenu Header und Foot (icons)
 
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
-                false);
+        // ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList,
+        //        false);
         ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.footer, mDrawerList,
                 false);
-        mDrawerList.addHeaderView(header, null, false);
+        // mDrawerList.addHeaderView(header, null, false);
         mDrawerList.addFooterView(footer, null, true);
 
         // list the drawer items
-        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[7];
+        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[8];
 
         drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_nav_home, "Home");
         drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_nav_studiengang, "Studiengang");
-        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_nav_kontakte, "Kontakt");
-        drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_nav_campus, "Campus");
-        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_nav_webmail, "Webmail");
-        drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_nav_vorlesungsplan, "Vorlesungsplan");
-        drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_nav_website, "Webseite");
+        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_nav_informatik, "Fakultät Informatik");
+        drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_nav_kontakte, "Kontakt");
+        drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_nav_campus, "Campus");
+        drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_nav_webmail, "Webmail");
+        drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_nav_vorlesungsplan, "Vorlesungsplan");
+        drawerItem[7] = new ObjectDrawerItem(R.drawable.ic_nav_website, "Webseite");
 
         // Pass the folderData to our ListView adapter
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);
@@ -134,21 +135,21 @@ public class MainActivity extends Activity {
         fragment = null;
         ListFragment listfragment;
         listfragment = null;
-        
+
         switch (v.getId()) {
 
             case R.id.rssreader:
-            	fragment = new RSSFragment();
-            	openFragment(fragment, -2);
+                fragment = new RSSFragment();
+                openFragment(fragment, -2);
                 break;
             case R.id.buttonBudget:
                 fragment = new BudgetRechner();
                 openFragment(fragment, -3);
                 break;
             case R.id.buttonMap:
-            	Intent hfuMap = new Intent(this,POIFragment.class);
+                Intent hfuMap = new Intent(this, POIFragment.class);
                 startActivity(hfuMap);
-            	break;
+                break;
             case R.id.buttonFelix:
                 fragment = new FelixFragment(_DownloadManager);
                 openFragment(fragment, -1);
@@ -161,8 +162,8 @@ public class MainActivity extends Activity {
                 String pnSt = "de.hfu.funfpunktnull";
                 getOpenAppIntent(this, pnSt);
                 break;
-           case R.id.mensa_button:
-                String pnMs = "de.rentoudu.mensa";
+            case R.id.mensa_button:
+                String pnMs = "de.hfu.mensa";
                 getOpenAppIntent(this, pnMs);
                 break;
             case R.id.bib_button:
@@ -196,7 +197,6 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
     }
-
 
 
     @Override
@@ -270,12 +270,14 @@ public class MainActivity extends Activity {
         fragment = null;
 
         switch (position) {
-            case 0: //this is because of the header
-            case 1:	//here is the actual first element of the drawer
+            case 0:
                 fragment = new HomeFragment();
                 break;
-            case 2:
+            case 1:
                 fragment = new StudiengangFragment(_DownloadManager);
+                break;
+            case 2:
+                fragment = new InformatikFragment(_DownloadManager);
                 break;
             case 3:
                 fragment = new KontaktFragment();
@@ -309,13 +311,13 @@ public class MainActivity extends Activity {
             //change the title to actuall fragment depended on position
             //position is handled normaly by navigation drawer, but manually if button click
             switch (position) {
-            //position of RSS:
-	            case -3:
-	            	setTitle("BudgetRechner");
-	                break;
+                //position of RSS:
+                case -3:
+                    setTitle("BudgetRechner");
+                    break;
                 //position of RSS:
                 case -2:
-                	setTitle("HFUReader");
+                    setTitle("HFUReader");
                     break;
                 //position of Felix:
                 case -1:

@@ -10,6 +10,7 @@ import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer.FillOutsideLine;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -23,6 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,63 +52,93 @@ import android.widget.LinearLayout;
 public class LineGraph extends Fragment{
 	
 public int counter = 0;	
+public String toast = null;
+public String beruf = null;
 public ArrayList<Integer> coordinates;
-	
+public TextView header;
+public int eigeneberb;
+public int eigeneberm;
+
 @SuppressWarnings("deprecation")
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-	
-
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
 		XYSeriesRenderer renderer2 = new XYSeriesRenderer();
-		
+		FillOutsideLine fill1 = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ALL);
+		FillOutsideLine fill2 = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ALL);
+
+
 		if(counter == 0){
 		//BACHELOR
 		int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};	
-		TimeSeries series = new TimeSeries("Bachelor");
+		TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
 		for(int i = 0; i < x.length; i = i+2){
 			series.add(x[i],coordinates.get(i));
-			//Linienst‰rke
-			renderer.setLineWidth(3f);
+			// Linienst‰rke
+			renderer.setLineWidth(5f);
 			renderer.setPointStyle(PointStyle.SQUARE);
 			renderer.setFillPoints(true);
 		}				
 		dataset.addSeries(series);		
-		renderer.setColor(Color.GREEN);		
+		renderer.setColor(Color.GREEN);	
+		fill1.setColor(Color.parseColor("#5500FF66"));
+		renderer.addFillOutsideLine(fill1);
 		//MASTER		
 		int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
 		//int[] b = {28,30,35,50,90,110};		
-		TimeSeries series2 = new TimeSeries("Master");
+		TimeSeries series2 = new TimeSeries("Abschluﬂ Master");
 		for(int c = 1; c < a.length; c = c+2){
 			series2.add(a[c],coordinates.get(c));
 			//Linienst‰rke
-			renderer2.setLineWidth(3f);
+			renderer2.setLineWidth(5f);
 			renderer.setChartValuesTextSize(50);
 		}	
 		dataset.addSeries(series2);		
-		renderer2.setColor(Color.RED);		
-		} else if(counter == 0){			
-			//ALL BACHELOR || MASTER
-			int[] x = {1,2,3,4,5,6};
-			int[]y =  {30,30,30,30,30,30};		
-			TimeSeries series = new TimeSeries("Bachelor");
-			for(int i = 0; i < x.length; i++){
-				series.add(x[i],y[i]);
+		renderer2.setColor(Color.RED);	
+		fill2.setColor(Color.parseColor("#55DB374A"));
+		renderer2.addFillOutsideLine(fill2);
+		
+		} 
+		// Eigene Berechnung Funktion
+		else if(counter == 1){			
+			// BACHELOR
+			int[] x = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
+			float eingangswertb = (float) eigeneberb;		
+			TimeSeries series = new TimeSeries("Abschluﬂ Bachelor ");
+				series.add(25,eingangswertb);
+			for(int i = 2; i < x.length; i = i+2){
+				eingangswertb = (float) (eingangswertb * 1.2);
+				series.add(x[i],eingangswertb);
+				//Linienst‰rke
+				renderer.setLineWidth(5f);
+				renderer.setPointStyle(PointStyle.SQUARE);
+				renderer.setFillPoints(true);
 			}				
-			dataset.addSeries(series);			
-			renderer.setColor(Color.GREEN);			
-			//MASTER		
-			int[] a = {1,2,3,4,5,6};
-			int[] b = {50,50,50,50,50,50};		
-			TimeSeries series2 = new TimeSeries("Master");
-			for(int c = 0; c < a.length; c++){
-				series2.add(a[c],b[c]);
+			dataset.addSeries(series);		
+			renderer.setColor(Color.GREEN);	
+			fill1.setColor(Color.parseColor("#5500FF66"));
+			renderer.addFillOutsideLine(fill1);
+			// MASTER		
+			int[] a = {25,25,27,27,30,30,35,35,40,40,45,45,50,50,55,55,60,60,65,65};
+			float eingangswertm = (float) eigeneberm;	
+			TimeSeries series2 = new TimeSeries("Abschluﬂ Master");
+			series2.add(25, 0);
+			series2.add(27, eingangswertm);
+			for(int c = 5; c < a.length; c = c+2){
+				eingangswertm = (float) (eingangswertm * 1.2);
+				series2.add(x[c],eingangswertm);;
+				//Linienst‰rke
+				renderer2.setLineWidth(5f);
+				renderer.setChartValuesTextSize(50);
 			}	
-			dataset.addSeries(series2);			
-			renderer2.setColor(Color.RED);			
-		} else {	
+			dataset.addSeries(series2);		
+			renderer2.setColor(Color.RED);	
+			fill2.setColor(Color.parseColor("#55DB374A"));
+			renderer2.addFillOutsideLine(fill2);		
+		} 
+		else {	
 			System.out.println("ERROR, wrong Paramater");
 		}
 	
@@ -114,14 +148,18 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 		mRenderer.addSeriesRenderer(renderer2);
 		mRenderer.setChartTitle("");
 		
+
 		//overall graph settings
 		//mRenderer.setChartTitle("Test");
-		mRenderer.setLabelsTextSize(20);
-		mRenderer.setAxisTitleTextSize(20);
+		mRenderer.setLabelsTextSize(40);
+		mRenderer.setAxisTitleTextSize(40);
 		mRenderer.setXTitle("Alter in Jahren");
 		mRenderer.setYTitle("Gehalt in Ä");
-		mRenderer.setLegendHeight(50);
-		mRenderer.setLegendTextSize(20);
+		//mRenderer.setLegendHeight(80);
+		//renderer.setMargins(new int[] { top, left, bottom, right });
+		mRenderer.setMargins(new int[] {0, 60, 90,0});		
+		mRenderer.setLegendTextSize(30);
+		mRenderer.setLegendHeight(60);
 		
 		View view = inflater.inflate(R.layout.dashboard_chart, container, false);		
 		// Getting a reference to LinearLayout of the MainActivity Layout
@@ -130,14 +168,23 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
         View mChart = ChartFactory.getLineChartView(getActivity().getBaseContext(), dataset, mRenderer);
         // Adding the Line Chart to the LinearLayout
         chartContainer.addView(mChart);	
+        Toast.makeText(getActivity(), toast, TRIM_MEMORY_COMPLETE).show();
+        //getActivity().setContentView(R.layout.dashboard_chart);
+        header = (TextView) view.findViewById(R.id.tv_title);
+        header.setText(beruf);
 		return view;
 }
 
-
-	public LineGraph(int number, Integer...ints) {
+	//Constructor
+	public LineGraph(String selection, String toast, int number, Integer...ints) {
+		this.beruf = selection;
+		this.toast = toast;
 		this.counter = number;
-		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));
-		
+		this.coordinates = new ArrayList<Integer>(Arrays.asList(ints));	
+		if(number == 1){
+		this.eigeneberb = this.coordinates.get(0);
+		this.eigeneberm = this.coordinates.get(1);
+		}
 	}
 
 
