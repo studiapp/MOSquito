@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cn"
         android:layout_alignParentTop="true"
-        android:text="@string/graphbeschreibung" />
+        android:text="Beschreibung kommt noch" />
 
     <Button
         android:id="@+id/cn"
